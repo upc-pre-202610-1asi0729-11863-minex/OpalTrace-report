@@ -380,6 +380,36 @@ Por otro lado, el 100% de los entrevistados valora el origen ético de los produ
 
 ![Chart 3](../assets/img/chapter-ii/chart-3.png)
 
+**Del análisis de los 3 segmentos se obtuvieron los siguientes insights:**
+## Segmento 1: Empresas Mineras
+ 
+| # | Insight | Observación empírica | Implicancia para el sistema |
+|---|---------|----------------------|----------------------------|
+| 1 | **La confianza reemplaza al control, y eso es el problema** | Los tres entrevistados coordinan el traslado de información del mineral vía WhatsApp entre turnos. El flujo operativo depende de que una persona específica recuerde y reenvíe datos críticos. | OpalTrace debe eliminar la dependencia de la memoria humana en la cadena de custodia. El registro de cada etapa debe ser automático, persistente y no delegable a una conversación de mensajería. |
+| 2 | **El "40% de fracasos" no es un dato estadístico, es una regla de dominio oculta** | Un entrevistado estima que el 40% de proyectos falla por información incompleta; otros reportan retrasos de hasta una semana en el reporte de incidentes. | El sistema debe implementar una invariante de dominio: un lote no puede avanzar a la siguiente etapa si la información de la etapa anterior está incompleta. Esto no es un reporte, es una restricción de flujo. |
+| 3 | **La conectividad define los límites del sistema, no solo la tecnología** | Los operarios trabajan en zonas sin internet estable y usan WhatsApp como herramienta principal por su resiliencia ante conectividad intermitente. | La trazabilidad debe poder operar en modo offline y sincronizarse al recuperar señal. Este es un requisito de arquitectura no negociable desde el primer sprint, no una mejora futura. |
+ 
+---
+ 
+## Segmento 2: Joyerías
+ 
+| # | Insight | Observación empírica | Implicancia para el sistema |
+|---|---------|----------------------|----------------------------|
+| 1 | **La confianza con proveedores enmascara la ausencia de trazabilidad real** | Las tres joyerías basan su control de calidad en relaciones de 10+ años con proveedores. Sin embargo, el 66% ha experimentado fraude con materiales falsos, incluyendo un incidente que obligó a devolver dinero a un cliente y romper la relación comercial. | OpalTrace debe ofrecer verificación objetiva e independiente de la relación comercial. La trazabilidad certificada debe funcionar incluso con proveedores nuevos o desconocidos, sin depender de historial de confianza. |
+| 2 | **La merma es un problema de comunicación, no de proceso técnico** | Yesiliany reporta pérdidas de hasta 1.5g por cada 5g en el proceso de purificación cuando el cliente aporta su propio material. El conflicto ocurre porque el cliente desconoce la calidad del material antes de entregarlo. | El momento más crítico para la trazabilidad en joyería es *antes* de que el orfebre trabaje el material. Un módulo de evaluación previa de pureza, con resultado documentado y firmado digitalmente por ambas partes, elimina este conflicto en origen. |
+| 3 | **La desconfianza del cliente existe en todas las ventas, no solo en las de alto valor** | Dante señala que los clientes dudan de la autenticidad incluso en ventas cotidianas, aunque las certificaciones formales solo se solicitan en piezas de mayor valor. | No se necesita un certificado formal para cada venta. Un mecanismo de verificación de bajo costo y baja fricción — como un código QR escaneable en el punto de venta — cubre la demanda latente sin añadir burocracia al proceso habitual. |
+ 
+---
+ 
+## Segmento 3: Consumidor Final
+ 
+| # | Insight | Observación empírica | Implicancia para el sistema |
+|---|---------|----------------------|----------------------------|
+| 1 | **El consumidor delega la verificación porque no tiene herramientas, no porque no le importe** | El 100% de los entrevistados "pregunta al vendedor" como único método de verificación. Reconocen que les importa el origen pero no saben cómo comprobarlo por cuenta propia. | La interfaz del consumidor final debe dar una respuesta binaria, visual y comprensible en menos de 10 segundos. Una experiencia técnica o compleja reproducirá el mismo comportamiento de delegación que existe hoy. |
+| 2 | **El 67% desconfía del marketing, pero el 100% pagaría más por autenticidad certificada** | Los consumidores no son escépticos del producto; son escépticos de las marcas que hablan sobre el producto sin evidencia verificable. Perciben que las certificaciones actuales son parte del discurso de marketing. | OpalTrace no debe posicionarse como marketing de sostenibilidad. Su valor diferencial es la evidencia verificable e independiente: "aquí está el registro de dónde vino este mineral" en lugar de "somos una marca ética". |
+| 3 | **La intención de abandono de marca es real pero no se activa sin información accesible** | El 100% afirma que dejaría de comprar a una marca vinculada a explotación laboral, pero ninguno sabe actualmente cómo identificarlo. La intención existe; el mecanismo de activación no. | OpalTrace no solo genera valor positivo (confirmar que un producto es ético) sino valor protector: da al consumidor la agencia para tomar decisiones que ya quiere tomar pero no puede por falta de datos accesibles. |
+ 
+
 <div style="page-break-after: always"></div>
 
 ## 2.3. Needfinding
@@ -406,6 +436,8 @@ Gracias a esta exploración, se identificaron áreas críticas de mejora, como l
 ![User-Persona-iii](../assets/img/chapter-ii/UserPersona-3.png)
 
 <div style="page-break-after: always"></div>
+
+
 
 ### 2.3.2. User Task Matrix
 
