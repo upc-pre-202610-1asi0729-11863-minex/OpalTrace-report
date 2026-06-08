@@ -24,7 +24,7 @@
 | Armestar Felipa, Adiran Andres | U202410084 |
 | Baldeon Vivar, Santiago Armando | U202319881 |
 | Philco Mota, Katty Yolanda | U202416107 |
-| Vergraray Calderon, Rose Almendra | U20241D159 |
+| Vergaray Calderon, Rose Almendra | U20241D159 |
 | Yi Torrejon, Ethan Raul | U202313434 |
 
 Mayo, 2026
