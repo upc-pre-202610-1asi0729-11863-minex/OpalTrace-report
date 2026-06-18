@@ -582,7 +582,7 @@ El sistema de navegación guía al usuario a través de procesos complejos con e
 ## 4.5. Web Applications Prototyping
 
 ## 4.6. Domain-Driven Software Architecture
-OpalTrace utiliza el enfoque de Domain-Driven Design (DDD) con el fin de facilitar la colaboración entre developers y expertos en el sector. Para esto, el sistema utiliza una organización entre 9 Bounded Context independientes de manera que logramos separar claramente las responsabilidades. Con esto también resaltamos las funcionalidades clave para hacer del proyecto altamente escalable de manera que se pueda incrementar la eficiencia de  procesos como el mantenimiento o la escalación. 
+OpalTrace utiliza el enfoque de Domain-Driven Design (DDD) con el fin de facilitar la colaboración entre developers y expertos en el sector. Para esto, el sistema utiliza una organización entre 8 Bounded Context independientes de manera que logramos separar claramente las responsabilidades. Con esto también resaltamos las funcionalidades clave para hacer del proyecto altamente escalable de manera que se pueda incrementar la eficiencia de  procesos como el mantenimiento o la escalación. 
 
 A continuación se muestran y describen los Bounded Context que forman la solución:
 | Bounded Context | Descripción | Módulos incluidos |
@@ -593,27 +593,51 @@ A continuación se muestran y describen los Bounded Context que forman la soluci
 | **Refinery Processing** | Procesamiento, división de lotes y asignación a joyerías. | Procesamiento en Refinería|
 | **Jewelry Inventory & Certification** | Inventario ético, certificación y emisión de documentos. | Inventario de Joyería y Certificación|
 | **Consumer Experience** | Verificación pública del origen de joyas por consumidores. | Experiencia del Consumidor Final|
-| **Administration & Audit** | Supervisión global, roles y configuración del sistema. | Panel de Administración|
 | **Reporting & Analytics** | Dashboards, reportes de merma, ESG y exportaciones. | Reportes y Analytics |
 | **Subscriptions & Billing** | Gestión de planes, acceso escalonado a funcionalidades y facturación. | Subscriptions & Billing |
 
+### 4.6.1. Design-Level EventStorming
 ### 4.6.1. Design-Level EventStorming
 Utilizando la técnica de Event Storming a nivel de diseño, hemos logrado identificar los eventos de dominio y los comandos quienes cargan con la lógica de negocio en cada Bounded Context.
 
 A continuación, se muestra la matriz de interdependencias entre los módulos:
 | Origen (Evento) | Destino (Comando) | Descripción |
 | :--- | :--- | :--- |
-| **Custody Chain & Logistics:** Alert Generated | **Reporting & Analytics:** Generate weight loss report | Genera un reporte de perdida de peso cuando se genere una alerta. |
-| **Refinery Processing:** Child lot destination set| **Jewelry Inventory & Certification:** Register Child lot in Inventory | El proceso en el que las joyerías reciben el lote de mineral. |
-| **Jewelry Inventory & Certification:** Certificate Saved | **Consumer Traceability:** View certificate | Permite al consumidor ver el certificado generado por los joyeros. |
-| **Mineral Extraction & Offline Ops:** Incident reported | **Reporting & Analytics:** View Production dashboard | Permite al supervisor revisar los incidentes que suceden durante el proceso de mineria. |
-| **Administration & Audit:** User Plan assigned | **Subscriptions & Billing:** Assign features | El administrador habilita al usuario la capacidad de usar features detrás de los planes de paga. |
-
-**EventStorming**
-![EventStorming](../assets/img/chapter-iv/event-storming-opaltrace.jpg)
+| Custody Chain & Logistics: Alert Generated | Reporting & Analytics: Generate weight loss report | Genera un reporte de perdida de peso cuando se genere una alerta. |
+| Refinery Processing: Child lot destination set | Jewelry Inventory & Certification: Register Child lot in Inventory | El proceso en el que las joyerías reciben el lote de mineral. |
+| Jewelry Inventory & Certification: Certificate Saved | Consumer Traceability: View certificate | Permite al consumidor ver el certificado generado por los joyeros. |
+| Mineral Extraction & Offline Ops: Incident reported | Reporting & Analytics: View Production dashboard | Permite al supervisor revisar los incidentes que suceden durante el proceso de mineria. |
+| Administration & Audit: User Plan assigned | Subscriptions & Billing: Assign features | El administrador habilita al usuario la capacidad de usar features detrás de los planes de paga. |
 
 Para visualizar el EventStorming de mejor manera recomendamos ingresar al siguiente link:
-[Visualizar EventStorming en Miro](https://miro.com/welcomeonboard/dnFtM2FkSy9ZaHNPQjdWa1Z5eUZMTHlUZitMZGlQdjlTMjBKR0ZoNG5iKzJoRER5SUs0V1pGVVoyUFN4N3hrNkh4WmVjeTMyWGZ1TkZQT2NYL0tYK3pDUlh2ZktLbGhuM1NwWlMvSTRCYk1oZm9yNVJzcHJDb1Eyc0dVNDZYcWtBS2NFMDFkcUNFSnM0d3FEN050ekl3PT0hdjE=?share_link_id=896920918108)
+[Visualizar EventStorming en Miro](https://miro.com/app/board/uXjVHECaLVQ=/?share_link_id=862745943611)
+
+Vista general del tablero, con el flujo completo de eventos entre los Bounded Context.
+![Overview](../assets/img/chapter-iv/overview-es.jpg)
+
+Identity & Access Management: registro, autenticación y activación de cuentas, evento que habilita el resto de las acciones del sistema.
+![IAM](../assets/img/chapter-iv/iam-es.jpg)
+
+Mineral Extraction & Offline Ops: extracción del mineral, creación del lote y registro de incidentes en campo.
+![Mineral Extraction](../assets/img/chapter-iv/mineral-extraction-es.jpg)
+
+Custody Chain & Logistics: transporte del lote, actualización de ubicación y generación de alertas por desvíos en la cadena de custodia.
+![Custody Chain](../assets/img/chapter-iv/custody-chain-es.jpg)
+
+Refinery Processing: división del lote en planta y asignación de destino de cada lote hijo hacia las joyerías.
+![Refinery Processing](../assets/img/chapter-iv/refinery-processing-es.jpg)
+
+Jewelry Inventory & Certification: registro del lote recibido, generación de certificados y control del stock en joyería.
+![Jewelry Inventory](../assets/img/chapter-iv/jewelry-inventory-es.jpg)
+
+Consumer Experience: verificación pública del certificado y del código QR por parte del consumidor final.
+![Consumer Experience](../assets/img/chapter-iv/consumer-experience-es.jpg)
+
+Reporting & Analytics: generación de reportes de merma y dashboards a partir de los eventos emitidos por los demás contextos.
+![Analytics](../assets/img/chapter-iv/analytics-es.jpg)
+
+Subscriptions & Billing: asignación de planes y habilitación de funcionalidades según el plan que otorga administración.
+![Subscriptions](../assets/img/chapter-iv/subscriptions-es.jpg)
 
 ### 4.6.2. Software Architecture Context Diagram
  
