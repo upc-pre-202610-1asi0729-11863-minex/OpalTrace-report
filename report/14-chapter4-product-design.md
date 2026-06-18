@@ -607,7 +607,7 @@ A continuación, se muestra la matriz de interdependencias entre los módulos:
 | Refinery Processing: Child lot destination set | Jewelry Inventory & Certification: Register Child lot in Inventory | El proceso en el que las joyerías reciben el lote de mineral. |
 | Jewelry Inventory & Certification: Certificate Saved | Consumer Traceability: View certificate | Permite al consumidor ver el certificado generado por los joyeros. |
 | Mineral Extraction & Offline Ops: Incident reported | Reporting & Analytics: View Production dashboard | Permite al supervisor revisar los incidentes que suceden durante el proceso de mineria. |
-| Administration & Audit: User Plan assigned | Subscriptions & Billing: Assign features | El administrador habilita al usuario la capacidad de usar features detrás de los planes de paga. |
+
 
 Para visualizar el EventStorming de mejor manera recomendamos ingresar al siguiente link:
 [Visualizar EventStorming en Miro](https://miro.com/app/board/uXjVHECaLVQ=/?share_link_id=862745943611)
