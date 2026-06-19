@@ -11,4 +11,5 @@
 - Conventional Commits. (2024). A specification for adding human and machine readable meaning to commit messages. https://www.conventionalcommits.org/
 
 - Stripe, Inc. (2024). Stripe API Reference. https://stripe.com/docs/api
-Amazon Web Services. (2024). Amazon S3 Documentation. https://docs.aws.amazon.com/s3/
+
+- Amazon Web Services. (2024). Amazon S3 Documentation. https://docs.aws.amazon.com/s3/
