@@ -1027,108 +1027,146 @@ El `JewelryCertificate` es el Aggregate Root con la invariante más compleja del
  
 ### 4.8.1. Database Diagrams
  
-El diseño de base de datos de OpalTrace sigue una arquitectura relacional implementada en **mySql** y **Verbatelo**, organizada en torno a los 9 Bounded Contexts definidos en la arquitectura DDD. Cada Bounded Context posee sus propias tablas con un prefijo identificador (`iam_`, `mineral_`, `custody_`, `refinery_`, `jewelry_`, `consumer_`, `admin_`, `analytics_`, `billing_`), garantizando separación lógica de responsabilidades y bajo acoplamiento entre contextos.
+El diseño de base de datos de OpalTrace está implementado en MySQL 8.0 con InnoDB, organizado en torno a las entidades centrales del dominio. Las tablas utilizan `bigint` con `AUTO_INCREMENT` como identificador primario y campos `created_at`/`updated_at` en todas las entidades. Los enums del dominio se implementan como columnas `ENUM` nativas de MySQL. Las relaciones entre tablas se establecen mediante Foreign Keys explícitas.
  
-Las principales características del diseño son las siguientes. Primero, los Value Objects del dominio se persisten como columnas embebidas dentro de la tabla de su Aggregate Root — por ejemplo, `GPSLocation` se almacena como `location_latitude` y `location_longitude` en `mineral_batches`, evitando joins innecesarios para datos que son parte intrínseca del aggregate. Segundo, los Enums del dominio se implementan como columnas con constraints `CHECK`, garantizando integridad referencial sin tablas adicionales de catálogo. Tercero, las relaciones entre Bounded Contexts se establecen únicamente a través de Foreign Keys hacia las tablas raíz (`iam_organizations`, `iam_user_accounts`, `mineral_batches`), respetando el principio DDD de que los BCs se referencian por identidad y no por objeto. Cuarto, la tabla `traceability_tracking_events` centraliza el historial completo de eventos de trazabilidad de cada Batch a lo largo de toda la cadena de suministro, permitiendo construir el `TraceabilityRecord` sin duplicar información entre contextos. Finalmente, todos los identificadores primarios son de tipo `UNIQUEIDENTIFIER` (UUID), eliminando dependencias de secuencias y facilitando la distribución futura del sistema.
- 
-A continuación se presentan los diagramas de base de datos para cada Bounded Context, mostrando tablas, columnas, constraints y relaciones.
+A continuación se presentan los diagramas de base de datos por tabla, tal como fueron generados desde Redgate Data Modeler.
  
 ---
  
-#### Vista General — Todos los Bounded Contexts
+#### Vista General
  
-El diagrama de vista general muestra la totalidad de las 35 tablas del sistema y las relaciones entre Bounded Contexts. Se evidencia que `iam_organizations` e `iam_user_accounts` actúan como tablas pivote referenciadas por todos los demás contextos, y que `mineral_batches` es la tabla central de la cadena de trazabilidad, siendo referenciada por los BCs de Custody, Refinery, Jewelry y Consumer.
+El diagrama de vista general muestra la totalidad de las tablas del sistema y sus relaciones. `mineral_batches` actúa como tabla central referenciada por `anomaly_reports`; `custody_transfers` es referenciada por `location_updates`; `refinery_receipts` es referenciada por `sub_lot_records`; y `subscriptions` es referenciada por `billing_records`.
  
-![Database Overview](../assets/img/chapter-iv/DB_Overview.png)
+![Database Overview](../assets/img/chapter-iv/DB_OVERVIEW.png)
  
 *Figura 1. Vista general del modelo de base de datos — OpalTrace Platform.*
  
 ---
  
-#### BC1 — Identity & Access Management
+#### users
  
-El contexto de identidad gestiona las tablas `iam_organizations`, `iam_user_accounts` e `iam_role_assignments`. La tabla `iam_organizations` almacena los datos de cada empresa registrada en la plataforma, incluyendo su tipo (`MINERA`, `TRANSPORTISTA`, `REFINERIA`, `JOYERIA`), su estado de aprobación y el `plan_tier` contratado. La tabla `iam_user_accounts` centraliza las credenciales y el rol de cada usuario, almacenando el `hashed_password` y los claims `role`, `segment` y `plan_tier` que conforman el JWT emitido por este contexto. La tabla `iam_role_assignments` registra el historial de asignaciones de roles por cuenta.
+Tabla central de identidad. Almacena credenciales, rol (`ADMIN`, `CONSUMER`, `SUPERVISOR`), segmento (`MINING`, `JEWELRY`, `CONSUMER`) y `plan_tier` contratado. Referenciada implícitamente por la mayoría de tablas mediante campos `_user_id`.
  
-![Database BC1 IAM](../assets/img/chapter-iv/DB_BC1_IAM.png)
+![Database Users](../assets/img/chapter-iv/DB_USERS.png)
  
-*Figura 2. Diagrama de base de datos — BC1: Identity & Access Management.*
- 
----
- 
-#### BC2 — Mineral Extraction & Offline Ops
- 
-El contexto de extracción gestiona cuatro tablas. `mineral_batches` es la tabla central del sistema — almacena el Aggregate Root `MineralBatch` con el `traceability_code` único, el `qr_code`, el tipo de mineral, el peso, las coordenadas GPS embebidas (`location_latitude`, `location_longitude`) y el `status` del Batch a lo largo de su ciclo de vida. `mineral_anomaly_reports` registra cada anomalía detectada con su `alert_type` y estado de resolución. `mineral_extraction_records` persiste los registros de extracción con timestamp sellado e inmutable. `mineral_sync_queue_items` gestiona la cola de operaciones offline pendientes de sincronización. Adicionalmente, la tabla `traceability_tracking_events` inicia su historial en este BC con el evento `MINERAL_EXTRACTED`.
- 
-![Database BC2 Mineral Extraction](../assets/img/chapter-iv/DB_BC2_Mineral%20Extraction%20%26%20Offline%20Ops.png)
- 
-*Figura 3. Diagrama de base de datos — BC2: Mineral Extraction & Offline Ops.*
+*Figura 2. Tabla users.*
  
 ---
  
-#### BC3 — Custody Chain & Logistics
+#### mineral_batches
  
-El contexto de cadena de custodia gestiona cinco tablas. `custody_batches` referencia al `mineral_batches` padre y mantiene el estado de transporte (`EN_ORIGEN`, `EN_TRANSITO`, `ENTREGADO`, `BLOQUEADO`) junto con la última `Location` conocida embebida. `custody_qr_codes` almacena el hash de firma digital del QR Code generado para cada Batch. `custody_transport_operations` registra cada operación de transporte con la ruta, kilómetros estimados y tiempo máximo permitido. `custody_location_updates` persiste cada actualización GPS durante el transporte, asociada a la operación correspondiente. `custody_transfers` registra cada transferencia formal de custodia entre Organizations, constituyendo el `Domain Event` más crítico de la cadena.
+Tabla central de trazabilidad. Almacena el `batch_id` único, tipo de mineral, peso, coordenadas GPS de origen embebidas, estado del lote (`EN_ORIGEN`, `EN_TRANSITO`, `EN_PLANTA`, `PROCESADO`, `CERTIFICADO`) y el `qr_code_data` generado.
  
-![Database BC3 Custody Chain](../assets/img/chapter-iv/DB_BC3_Custody%20Chain%20%26%20Logistics.png)
+![Database Mineral Batches](../assets/img/chapter-iv/DB_MINERAL_BATCHES.png)
  
-*Figura 4. Diagrama de base de datos — BC3: Custody Chain & Logistics.*
- 
----
- 
-#### BC4 — Refinery Processing
- 
-El contexto de refinería gestiona cuatro tablas. `refinery_batches` referencia al `mineral_batches` padre y almacena la invariante de conservación de masa mediante `mass_balance_tolerance_pct` y `mass_balance_is_valid`. El campo `inherited_traceability_code` garantiza que cada Batch en refinería conserve la trazabilidad de su origen. `refinery_child_batches` registra cada sublote generado en la división, con su peso y organización de destino. `refinery_processing_operations` persiste cada operación de procesamiento (`SMELTING`, `REFINING`, `ASSAYING`, `CASTING`). `refinery_shrinkage_records` almacena la merma en cada etapa, con `input_weight`, `output_weight` y `loss_pct`, datos consumidos por el BC8 para los reportes ESG.
- 
-![Database BC4 Refinery](../assets/img/chapter-iv/DB_BC4_Refinery.png)
- 
-*Figura 5. Diagrama de base de datos — BC4: Refinery Processing.*
+*Figura 3. Tabla mineral_batches.*
  
 ---
  
-#### BC5 — Jewelry Inventory & Certification
+#### anomaly_reports
  
-El contexto de joyería gestiona cinco tablas correspondientes a los dos Aggregate Roots del dominio. Para `JewelryProduct`: `jewelry_products` almacena la columna `stock_category` con constraint `CHECK ('CERTIFIED_OPALTRACE', 'EXTERNAL')` que implementa la invariante de segregación ética; `jewelry_inventory_items` gestiona el stock con `StorageLocation` embebida; `jewelry_fabrication_orders` registra las órdenes de fabricación con estado `BLOCKED` cuando se detecta mezcla de stocks; `jewelry_fabrication_order_components` persiste los componentes de cada orden. Para `JewelryCertificate`: `jewelry_certificates` almacena el estado de la Certification de Autenticidad, el `rejection_code` en caso de rechazo, y la URL del PDF almacenado en AWS S3.
+Registra anomalías detectadas sobre un lote. Referencia a `mineral_batches` mediante FK en `batch_id`. Almacena la categoría (`WEIGHT_DISCREPANCY`, `BROKEN_SEAL`, `CONTAMINATION`, etc.), descripción, evidencia fotográfica y estado de resolución.
  
-![Database BC5 Jewelry](../assets/img/chapter-iv/DB_BC5_Jewelry.png)
+![Database Anomaly Reports](../assets/img/chapter-iv/DB_ANOMALY_REPORTS.png)
  
-*Figura 6. Diagrama de base de datos — BC5: Jewelry Inventory & Certification.*
- 
----
- 
-#### BC6 — Consumer Experience
- 
-El contexto de experiencia del consumidor gestiona dos tablas de solo lectura que implementan el patrón CQRS. `consumer_certificates` es una proyección optimizada del estado de certificación de cada Product, indexada por `qr_code_hash` para consultas públicas de alta frecuencia sin autenticación. Almacena el `journey_map_json` con el recorrido geográfico completo del Mineral en formato JSON. `consumer_verification_events` registra cada intento de verificación vía QR Code con su resultado (`SUCCESS`, `FAILED`, `NOT_FOUND`) y el `failure_code` correspondiente si la verificación falló.
- 
-![Database BC6 Consumer Experience](../assets/img/chapter-iv/DB_BC6_Consumer_Experience.png)
- 
-*Figura 7. Diagrama de base de datos — BC6: Consumer Experience.*
+*Figura 4. Tabla anomaly_reports.*
  
 ---
  
-#### BC7 — Administration & Audit
+#### authorized_zones
  
-El contexto de administración gestiona la tabla `admin_audit_records`, que implementa el Entity `AuditRecord` con carácter inmutable por diseño — ningún registro de auditoría puede ser modificado una vez creado. Almacena el `event_type` (`ACCOUNT_APPROVED`, `ACCOUNT_REJECTED`, `ORGANIZATION_SUSPENDED`, etc.), el `actor_id` responsable de la acción, la `ip_address` desde donde se ejecutó, y el payload en formato JSON con el estado anterior y posterior del objeto afectado (`payload_before`, `payload_after`). Este contexto referencia a `iam_organizations` e `iam_user_accounts` del BC1 para mantener la trazabilidad administrativa completa.
+Almacena zonas geográficas autorizadas para operaciones mineras. Define un área circular mediante `center_latitude`, `center_longitude` y `radius_meters`.
  
-![Database BC7 Administration](../assets/img/chapter-iv/DB_BC7_Administration%20%26%20Audit.png)
+![Database Authorized Zones](../assets/img/chapter-iv/DB_AUTHORIZED_ZONES.png)
  
-*Figura 8. Diagrama de base de datos — BC7: Administration & Audit.*
- 
----
- 
-#### BC8 — Reporting & Analytics
- 
-El contexto de reportes gestiona cuatro tablas de solo lectura orientadas al análisis de datos. `analytics_reports` centraliza cada reporte generado con su tipo y período. `analytics_merma_indicators` persiste el Value Object `MermaIndicator` con `stage_origin`, `stage_destination`, `input_weight`, `output_weight` y `loss_pct` por etapa de procesamiento. `analytics_sustainability_records` almacena el Value Object `SustainabilityRecord` con los tres scores ESG: `environmental_score`, `social_score` y `ethical_score`. `analytics_dashboard_snapshots` captura el estado operativo del sistema en un momento dado, incluyendo `active_batches`, `pending_anomalies`, `certifications_granted` y `certification_rate` para el Dashboard de monitoreo en tiempo real.
- 
-![Database BC8 Reporting](../assets/img/chapter-iv/DB_BC8_Reporting.png)
- 
-*Figura 9. Diagrama de base de datos — BC8: Reporting & Analytics.*
+*Figura 5. Tabla authorized_zones.*
  
 ---
  
-#### BC9 — Subscriptions & Billing
+#### custody_transfers
  
-El contexto de suscripciones gestiona tres tablas. `billing_subscriptions` almacena el Aggregate Root `Subscription` con el `plan_tier` contratado, el `billing_cycle` (`MONTHLY`, `ANNUAL`) y el Value Object `FeatureSet` embebido como columnas booleanas (`has_offline_mode`, `has_esg_reporting`, `has_advanced_analytics`, `has_api_access`) y límites numéricos (`max_batches_per_month`, `max_users`). También almacena el `stripe_customer_id` para la integración con Stripe API. `billing_records` persiste cada factura con su monto, moneda, estado (`PENDING`, `PAID`, `OVERDUE`, `CANCELLED`) y el `stripe_invoice_id` de referencia. `billing_plan_change_records` registra el historial de cambios de plan con el tier anterior y nuevo, implementando el Value Object `PlanChangeRecord` de forma inmutable.
+Registra cada transferencia de custodia de un lote. Almacena coordenadas de inicio y fin del trayecto, estado (`PENDING`, `IN_TRANSIT`, `DELIVERED`) y referencia al `batch_id` correspondiente.
  
-![Database BC9 Subscriptions Billing](../assets/img/chapter-iv/DB_BC9_Subscriptions%26Billing.png)
+![Database Custody Transfers](../assets/img/chapter-iv/DB_CUSTODY_TRANSFERS.png)
  
-*Figura 10. Diagrama de base de datos — BC9: Subscriptions & Billing.*
+*Figura 6. Tabla custody_transfers.*
+ 
+---
+ 
+#### location_updates
+ 
+Persiste cada actualización GPS durante un transporte activo. Referencia a `custody_transfers` mediante FK en `transfer_id`.
+ 
+![Database Location Updates](../assets/img/chapter-iv/DB_LOCATION_UPDATES.png)
+ 
+*Figura 7. Tabla location_updates.*
+ 
+---
+ 
+#### refinery_receipts
+ 
+Registra la recepción de un lote en refinería. Almacena el peso declarado vs. el peso original para calcular `weight_discrepancy_percent`, y las marcas de tiempo de recepción y fin de procesamiento.
+ 
+![Database Refinery Receipts](../assets/img/chapter-iv/DB_REFINERY_RECEIPTS.png)
+ 
+*Figura 8. Tabla refinery_receipts.*
+ 
+---
+ 
+#### sub_lot_records
+ 
+Registra los sublotes generados a partir de un lote padre en refinería. Referencia a `refinery_receipts` mediante FK en `receipt_id`.
+ 
+![Database Sub Lot Records](../assets/img/chapter-iv/DB_SUB_LOT_RECORDS.png)
+ 
+*Figura 9. Tabla sub_lot_records.*
+ 
+---
+ 
+#### jewelry_products
+ 
+Almacena los productos de joyería con su estado de certificación (`PENDING`, `CERTIFIED`, `REJECTED`, `REVOKED`) y categoría de stock (`CERTIFIED_STOCK`, `EXTERNAL_STOCK`). El campo `can_generate_certificate` implementa la invariante de elegibilidad para certificación.
+ 
+![Database Jewelry Products](../assets/img/chapter-iv/DB_JEWELRY_PRODUCTS.png)
+ 
+*Figura 10. Tabla jewelry_products.*
+ 
+---
+ 
+#### product_verifications
+ 
+Registra cada intento de verificación pública de un producto vía QR. Almacena el resultado (`AUTHENTIC`, `NOT_VERIFIABLE`), la razón de fallo si aplica, y la IP del verificador.
+ 
+![Database Product Verifications](../assets/img/chapter-iv/DB_PRODUCT_VERIFICATIONS.png)
+ 
+*Figura 11. Tabla product_verifications.*
+ 
+---
+ 
+#### analytics_reports
+ 
+Centraliza los reportes generados por el sistema. Almacena el tipo (`ESG`, `SHRINKAGE`, `DASHBOARD`, `COMPARATIVE`), el período analizado y el `compliance_status` resultante.
+ 
+![Database Analytics Reports](../assets/img/chapter-iv/DB_ANALYTICS_REPORTS.png)
+ 
+*Figura 12. Tabla analytics_reports.*
+ 
+---
+ 
+#### subscriptions
+ 
+Almacena la suscripción activa de cada usuario con su `plan_tier` (`SILVER`, `GOLD`, `PLATINUM`), ciclo de facturación (`MONTHLY`, `ANNUAL`), estado (`ACTIVE`, `SUSPENDED`, `CANCELLED`) y datos de downgrade programado.
+ 
+![Database Subscriptions](../assets/img/chapter-iv/DB_SUBSCRIPTIONS.png)
+ 
+*Figura 13. Tabla subscriptions.*
+ 
+---
+ 
+#### billing_records
+ 
+Registra cada transacción de pago asociada a una suscripción. Almacena el monto, `invoice_number` único, método de pago y estado (`COMPLETED`, `REJECTED`, `REFUNDED`).
+ 
+![Database Billing Records](../assets/img/chapter-iv/DB_BILLING_RECORDS.png)
+ 
+*Figura 14. Tabla billing_records.*
