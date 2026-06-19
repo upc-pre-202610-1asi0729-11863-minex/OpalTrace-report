@@ -974,16 +974,12 @@ Este BC posee dos Aggregate Roots independientes. `JewelryProduct` impone la sep
 #### BC6 — Consumer Experience
  
 Implementa el patrón **CQRS**: el Aggregate Root `ConsumerCertificate` es un read model de solo lectura que proyecta el estado consolidado del Mineral desde todos los BCs anteriores. No modifica ningún dato. El Value Object `TraceabilityVerificationResult` encapsula el resultado de la verificación pública vía QR Code. El enum `VerificationFailureCode` detalla la causa exacta del fallo ante un QR inválido, alterado o con anomalías activas.
- 
-#### BC7 — Administration & Audit
- 
-El Aggregate Root `Organization` gestiona el ciclo de vida de las cuentas empresariales B2B. El Entity `AuditRecord` es inmutable por diseño — registra cada acción administrativa con actor, timestamp e IP. Los enums `RejectionCode` y `SuspensionCode` clasifican los motivos de rechazo y suspensión según reglas de negocio definidas por MINEX.
- 
-#### BC8 — Reporting & Analytics
+
+#### BC7 — Reporting & Analytics
  
 El Aggregate Root `AnalyticsReport` es un read model event-driven que consolida información de todos los BCs. El Value Object `MermaIndicator` calcula la pérdida de peso entre etapas. El Value Object `SustainabilityRecord` agrega las métricas ESG en tres dimensiones: `environmentalScore`, `socialScore` y `ethicalScore`. El Entity `DashboardSnapshot` captura el estado del sistema en un momento dado para el Dashboard de monitoreo en tiempo real.
  
-#### BC9 — Subscriptions & Billing
+#### BC8 — Subscriptions & Billing
  
 El Aggregate Root `Subscription` controla el acceso escalonado a funcionalidades mediante el Value Object `FeatureSet`, que define los límites de uso según `PlanTierType`: `SILVER`, `GOLD` o `PLATINUM`. El Entity `BillingRecord` registra cada transacción de pago con su estado en el enum `InvoiceStatus`. Al cambiar de plan, `Subscription` emite `PlanUpgraded` o `PlanDowngraded` para que el BC1 refresque el JWT del usuario con el nuevo `planTier`.
  
@@ -1037,7 +1033,7 @@ A continuación se presentan los diagramas de base de datos por tabla, tal como 
  
 El diagrama de vista general muestra la totalidad de las tablas del sistema y sus relaciones. `mineral_batches` actúa como tabla central referenciada por `anomaly_reports`; `custody_transfers` es referenciada por `location_updates`; `refinery_receipts` es referenciada por `sub_lot_records`; y `subscriptions` es referenciada por `billing_records`.
  
-![Database Overview](../assets/img/chapter-iv/DB_OVERVIEW.png)
+![Database Overview](../assets/img/chapter-iv/DB_Overview.png)
  
 *Figura 1. Vista general del modelo de base de datos — OpalTrace Platform.*
  
