@@ -923,15 +923,7 @@ Adicionalmente, se presentan diagramas de detalle para los tres Aggregates más 
  
 ---
  
-#### Bounded Context 7: Administration & Audit
- 
-![Class Diagram Administration](../assets/img/chapter-iv/BC7_Administration_ClassDiagram-Bounded_Context_7__Administration___Audit.png)
- 
-*Figura 8. Diagrama de clases — BC7: Administration & Audit.*
- 
----
- 
-#### Bounded Context 8: Reporting & Analytics
+#### Bounded Context 7: Reporting & Analytics
  
 ![Class Diagram Reporting Analytics](../assets/img/chapter-iv/BC8_ReportingAnalytics_ClassDiagram-Bounded_Context_8__Reporting___Analytics.png)
  
@@ -939,7 +931,7 @@ Adicionalmente, se presentan diagramas de detalle para los tres Aggregates más 
  
 ---
  
-#### Bounded Context 9: Subscriptions & Billing
+#### Bounded Context 8: Subscriptions & Billing
  
 ![Class Diagram Subscriptions Billing](../assets/img/chapter-iv/BC9_SubscriptionsBilling_ClassDiagram-Bounded_Context_9__Subscriptions___Billing.png)
  
