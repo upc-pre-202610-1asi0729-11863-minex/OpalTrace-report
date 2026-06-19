@@ -27,7 +27,7 @@
 | Vergaray Calderon, Rose Almendra | U20241D159 |
 | Yi Torrejon, Ethan Raul | U202313434 |
 
-Mayo, 2026
+Junio, 2026
 
 <div style="page-break-after: always"></div>
 
@@ -35,17 +35,18 @@ Mayo, 2026
 
 | Versión | Fecha | Autor | Descripción de modificación |
 | :---: | :---: | :---: | :--- |
-| 0.1.0 | 04/23/2026 | Rose Vergaray| Commit inicial del informe; estructura base del repositorio, organización de carpetas y capítulos principales (`develop`) |
-| 0.2.0 | 04/23/2026 | Ethan Yi | Creación de la rama `feature/chapter-3-requirements-specification` e incorporación del Capítulo III: Requirements Specification, User Stories e Impact Mapping |
-| 0.3.0 | 04/23/2026 | Santiago Baldeon | Desarrollo del análisis de competidores, Big Picture EventStorming y contextualización del dominio (`feature/chapter-ii-competitors`, `feature/chapter-ii-big-picture-event-storming`) |
-| 0.4.0 | 04/23/2026 | Rose Vergaray | Integración de avances de Product Design, Information Architecture  (`feature/chapter-iv-product-desing`) |
-| 0.5.0 | 04/23/2026 | Adrián Armestar | Creación de la rama `feature/chapter-iv-class-diagrams` e incorporación de diagramas de clase y modelado orientado a objetos |
-| 0.6.0 | 04/23/2026 | Ethan Yi | Inserción de datos en la base de datos (`feature/chapter-iv-diagrams`) |
-| 0.7.0 | 04/23/2026 | Santiago Baldeon | Incorporación de anexos y consolidación de capítulos para la entrega del AV1 (`develop`) |
-| 1.0.0| 04/23/2025 | Armestar Felipa, Adrian Andres<br>Baldeon Vivar, Santiago Armando<br>Philco Mota, Katty Yolanda<br>Vergaray Calderon, Rose Almendra<br>Yi Torrejon, Ethan Raul | Se agregó: <br>Capitulo I<br>Capitulo II<br>Capitulo III<br>Capitulo IV<br>Capitulo V<br>5.2.1. Sprint 1 |
-| 1.8.0 | 05/10/2026 | Katty Philco | Actualización de diagramas C4 aplicando bounded contexts y mejoras en la arquitectura del sistema (`feature/chapter-iv-diagrams`) y la incorporación de insights y mejoras en el Capítulo II (`develop`) |
-| 1.9.0 | 05/12/2026 | Armestar Felipa, Adrian Andres<br>Philco Mota, Katty Yolanda | Actualización de diagramas de clases y base de datos para el refinamiento del modelo orientado al dominio (`feature/chapter-iv-diagrams`) |
-| 2.0.0 | 05/12/2026 | Armestar Felipa, Adrian Andres<br>Baldeon Vivar, Santiago Armando<br>Philco Mota, Katty Yolanda<br>Vergaray Calderon, Rose Almendra<br>Yi Torrejon, Ethan Raul | Consolidación final del informe, integración de diagramas, arquitectura, requerimientos y desarrollo frontend correspondiente al TB1 (`develop`)<br>Capitulo V<br>5.2.2. Sprint 2 |
+| 0.1.0 | 23/04/2026 | Rose Vergaray| Commit inicial del informe; estructura base del repositorio, organización de carpetas y capítulos principales (`develop`) |
+| 0.2.0 | 23/04/2026 | Ethan Yi | Creación de la rama `feature/chapter-3-requirements-specification` e incorporación del Capítulo III: Requirements Specification, User Stories e Impact Mapping |
+| 0.3.0 | 23/04/2026 | Santiago Baldeon | Desarrollo del análisis de competidores, Big Picture EventStorming y contextualización del dominio (`feature/chapter-ii-competitors`, `feature/chapter-ii-big-picture-event-storming`) |
+| 0.4.0 | 23/04/2026 | Rose Vergaray | Integración de avances de Product Design, Information Architecture  (`feature/chapter-iv-product-desing`) |
+| 0.5.0 | 23/04/2026 | Adrián Armestar | Creación de la rama `feature/chapter-iv-class-diagrams` e incorporación de diagramas de clase y modelado orientado a objetos |
+| 0.6.0 | 23/04/2026 | Ethan Yi | Inserción de datos en la base de datos (`feature/chapter-iv-diagrams`) |
+| 0.7.0 | 23/04/2026 | Santiago Baldeon | Incorporación de anexos y consolidación de capítulos para la entrega del AV1 (`develop`) |
+| 1.0.0 | 23/04/2026 | Armestar Felipa, Adrian Andres<br>Baldeon Vivar, Santiago Armando<br>Philco Mota, Katty Yolanda<br>Vergaray Calderon, Rose Almendra<br>Yi Torrejon, Ethan Raul | Se agregó: <br>Capitulo I<br>Capitulo II<br>Capitulo III<br>Capitulo IV<br>Capitulo V<br>5.2.1. Sprint 1 |
+| 1.8.0 | 10/05/2026 | Katty Philco | Actualización de diagramas C4 aplicando bounded contexts y mejoras en la arquitectura del sistema (`feature/chapter-iv-diagrams`) y la incorporación de insights y mejoras en el Capítulo II (`develop`) |
+| 1.9.0 | 12/05/2026 | Armestar Felipa, Adrian Andres<br>Philco Mota, Katty Yolanda | Actualización de diagramas de clases y base de datos para el refinamiento del modelo orientado al dominio (`feature/chapter-iv-diagrams`) |
+| 2.0.0 | 12/05/2026 | Armestar Felipa, Adrian Andres<br>Baldeon Vivar, Santiago Armando<br>Philco Mota, Katty Yolanda<br>Vergaray Calderon, Rose Almendra<br>Yi Torrejon, Ethan Raul | Capitulo V<br>5.2.2. Sprint 2<br>5.2.2. Sprint 2 <br>5.2.2.1. Sprint Planning 2. <br>5.2.2.2. Aspect Leaders and Collaborators. <br>5.2.2.3. Sprint Backlog 2. <br>5.2.2.4. Development Evidence for Sprint Review. <br>5.2.2.5. Execution Evidence for Sprint Review. <br>5.2.2.6. Services Documentation Evidence for Sprint Review. <br>5.2.2.7. Software Deployment Evidence for Sprint Review. <br>5.2.2.8. Team Collaboration Insights during Sprint. |
+| 3.0.0 | 18/06/2026 | Armestar Felipa, Adrian Andres<br>Baldeon Vivar, Santiago Armando<br>Philco Mota, Katty Yolanda<br>Vergaray Calderon, Rose Almendra<br>Yi Torrejon, Ethan Raul | Capitulo V<br>5.2.3. Sprint 3<br>5.2.3.1. Sprint Planning 3. <br>5.2.3.2. Aspect Leaders and Collaborators. <br>5.2.3.3. Sprint Backlog 3. <br>5.2.3.4. Development Evidence for Sprint Review. <br>5.2.3.5. Execution Evidence for Sprint Review. <br>5.2.3.6. Services Documentation Evidence for Sprint Review. <br>5.2.3.7. Software Deployment Evidence for Sprint Review. <br>5.2.3.8. Team Collaboration Insights during Sprint.<br>5.3. Validation Interviews<br>5.3.1. Diseño de Entrevistas<br>5.3.2. Registro de Entrevistas<br>5.3.3. Evaluaciones según heurísticas<br>5.4. Video About-the-Product |
 
 <div style="page-break-after: always"></div>
 
@@ -53,11 +54,17 @@ Mayo, 2026
 
 El repositorio del Project Report se encuentra disponible en la organización de GitHub del equipo en la siguiente URL: 
 
-[Repositorio Reporte](https://github.com/Minex-organization/OpalTrace-report)
+[Repositorio Reporte](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-report)
 
-[Repositorio WebApp](https://github.com/Minex-organization/OpalTrace-webapp)
+[Repositorio WebApp](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-webapp)
+
+[Repositorio Platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform)
 
 Durante el Sprint, la redacción del informe se realizó de manera conjunta por todo el equipo. La organización del trabajo consistió en asignar capítulos y secciones a cada integrante, quienes incorporaron sus contribuciones mediante commits en subramas que luego se integraron en la rama develop del repositorio. Este enfoque permitió conservar un registro ordenado de las modificaciones y asegurar la trazabilidad de cada aporte.
+
+![Insight](../assets/img/sprint2/insight.png)
+
+![Insight](./assets/img/sprint3/insight.png)
 
 <div style="page-break-after: always"></div>
 
@@ -219,6 +226,42 @@ Durante el Sprint, la redacción del informe se realizó de manera conjunta por 
 
     - [5.2.1.8. Team Collaboration Insights during Sprint](./report/15-chapter5-product-implementation.md#5218-team-collaboration-insights-during-sprint)
 
+  - [5.2.2. Sprint 2](./report/15-chapter5-product-implementation.md#522-sprint-2)
+
+    - [5.2.2.1. Sprint Planning 2](./report/15-chapter5-product-implementation.md#5221-sprint-planning-2)
+
+    - [5.2.2.2. Aspect Leaders and Collaborators](./report/15-chapter5-product-implementation.md#5222-aspect-leaders-and-collaborators)
+
+    - [5.2.2.3. Sprint Backlog 1](./report/15-chapter5-product-implementation.md#5223-sprint-backlog-2)
+
+    - [5.2.2.4. Development Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5214-development-evidence-for-sprint-review)
+
+    - [5.2.2.5. Execution Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5225-execution-evidence-for-sprint-review)
+
+    - [5.2.2.6. Services Documentation Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5226-services-documentation-evidence-for-sprint-review)
+
+    - [5.2.2.7. Software Deployment Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5227-software-deployment-evidence-for-sprint-review)
+
+    - [5.2.2.8. Team Collaboration Insights during Sprint](./report/15-chapter5-product-implementation.md#5228-team-collaboration-insights-during-sprint)
+
+  - [5.2.3. Sprint 3](./report/15-chapter5-product-implementation.md#523-sprint-3)
+
+    - [5.2.3.1. Sprint Planning 3](./report/15-chapter5-product-implementation.md#5231-sprint-planning-3)
+
+    - [5.2.3.2. Aspect Leaders and Collaborators](./report/15-chapter5-product-implementation.md#5232-aspect-leaders-and-collaborators)
+
+    - [5.2.3.3. Sprint Backlog 1](./report/15-chapter5-product-implementation.md#5233-sprint-backlog-3)
+
+    - [5.2.3.4. Development Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5234-development-evidence-for-sprint-review)
+
+    - [5.2.3.5. Execution Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5235-execution-evidence-for-sprint-review)
+
+    - [5.2.3.6. Services Documentation Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5236-services-documentation-evidence-for-sprint-review)
+
+    - [5.2.3.7. Software Deployment Evidence for Sprint Review](./report/15-chapter5-product-implementation.md#5237-software-deployment-evidence-for-sprint-review)
+
+    - [5.2.3.8. Team Collaboration Insights during Sprint](./report/15-chapter5-product-implementation.md#5238-team-collaboration-insights-during-sprint)
+
 - [5.3. Validation Interviews](./report/15-chapter5-product-implementation.md#53-validation-interviews)
 
   - [5.3.1. Diseño de Entrevistas](./report/15-chapter5-product-implementation.md#531-diseño-de-entrevistas)
@@ -228,5 +271,11 @@ Durante el Sprint, la redacción del informe se realizó de manera conjunta por 
   - [5.3.3. Evaluaciones según heurísticas](./report/15-chapter5-product-implementation.md#533-evaluaciones-según-heurísticas)
 
 - [5.4. Video About-the-Product](./report/15-chapter5-product-implementation.md#54-video-about-the-product)
+
+[CONCLUSIONES](./report/18-conclusiones)
+
+[BIBLOGRAFÍA](./report/19-biblografia)
+
+[ANEXOS](./report/20-anexos)
 
 <div style="page-break-after: always"></div>

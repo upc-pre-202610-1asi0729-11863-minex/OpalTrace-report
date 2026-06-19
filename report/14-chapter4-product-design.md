@@ -582,7 +582,7 @@ El sistema de navegación guía al usuario a través de procesos complejos con e
 ## 4.5. Web Applications Prototyping
 
 ## 4.6. Domain-Driven Software Architecture
-OpalTrace utiliza el enfoque de Domain-Driven Design (DDD) con el fin de facilitar la colaboración entre developers y expertos en el sector. Para esto, el sistema utiliza una organización entre 9 Bounded Context independientes de manera que logramos separar claramente las responsabilidades. Con esto también resaltamos las funcionalidades clave para hacer del proyecto altamente escalable de manera que se pueda incrementar la eficiencia de  procesos como el mantenimiento o la escalación. 
+OpalTrace utiliza el enfoque de Domain-Driven Design (DDD) con el fin de facilitar la colaboración entre developers y expertos en el sector. Para esto, el sistema utiliza una organización entre 8 Bounded Context independientes de manera que logramos separar claramente las responsabilidades. Con esto también resaltamos las funcionalidades clave para hacer del proyecto altamente escalable de manera que se pueda incrementar la eficiencia de  procesos como el mantenimiento o la escalación. 
 
 A continuación se muestran y describen los Bounded Context que forman la solución:
 | Bounded Context | Descripción | Módulos incluidos |
@@ -593,27 +593,51 @@ A continuación se muestran y describen los Bounded Context que forman la soluci
 | **Refinery Processing** | Procesamiento, división de lotes y asignación a joyerías. | Procesamiento en Refinería|
 | **Jewelry Inventory & Certification** | Inventario ético, certificación y emisión de documentos. | Inventario de Joyería y Certificación|
 | **Consumer Experience** | Verificación pública del origen de joyas por consumidores. | Experiencia del Consumidor Final|
-| **Administration & Audit** | Supervisión global, roles y configuración del sistema. | Panel de Administración|
 | **Reporting & Analytics** | Dashboards, reportes de merma, ESG y exportaciones. | Reportes y Analytics |
 | **Subscriptions & Billing** | Gestión de planes, acceso escalonado a funcionalidades y facturación. | Subscriptions & Billing |
 
+### 4.6.1. Design-Level EventStorming
 ### 4.6.1. Design-Level EventStorming
 Utilizando la técnica de Event Storming a nivel de diseño, hemos logrado identificar los eventos de dominio y los comandos quienes cargan con la lógica de negocio en cada Bounded Context.
 
 A continuación, se muestra la matriz de interdependencias entre los módulos:
 | Origen (Evento) | Destino (Comando) | Descripción |
 | :--- | :--- | :--- |
-| **Custody Chain & Logistics:** Alert Generated | **Reporting & Analytics:** Generate weight loss report | Genera un reporte de perdida de peso cuando se genere una alerta. |
-| **Refinery Processing:** Child lot destination set| **Jewelry Inventory & Certification:** Register Child lot in Inventory | El proceso en el que las joyerías reciben el lote de mineral. |
-| **Jewelry Inventory & Certification:** Certificate Saved | **Consumer Traceability:** View certificate | Permite al consumidor ver el certificado generado por los joyeros. |
-| **Mineral Extraction & Offline Ops:** Incident reported | **Reporting & Analytics:** View Production dashboard | Permite al supervisor revisar los incidentes que suceden durante el proceso de mineria. |
-| **Administration & Audit:** User Plan assigned | **Subscriptions & Billing:** Assign features | El administrador habilita al usuario la capacidad de usar features detrás de los planes de paga. |
+| Custody Chain & Logistics: Alert Generated | Reporting & Analytics: Generate weight loss report | Genera un reporte de perdida de peso cuando se genere una alerta. |
+| Refinery Processing: Child lot destination set | Jewelry Inventory & Certification: Register Child lot in Inventory | El proceso en el que las joyerías reciben el lote de mineral. |
+| Jewelry Inventory & Certification: Certificate Saved | Consumer Traceability: View certificate | Permite al consumidor ver el certificado generado por los joyeros. |
+| Mineral Extraction & Offline Ops: Incident reported | Reporting & Analytics: View Production dashboard | Permite al supervisor revisar los incidentes que suceden durante el proceso de mineria. |
 
-**EventStorming**
-![EventStorming](../assets/img/chapter-iv/event-storming-opaltrace.jpg)
 
 Para visualizar el EventStorming de mejor manera recomendamos ingresar al siguiente link:
-[Visualizar EventStorming en Miro](https://miro.com/welcomeonboard/dnFtM2FkSy9ZaHNPQjdWa1Z5eUZMTHlUZitMZGlQdjlTMjBKR0ZoNG5iKzJoRER5SUs0V1pGVVoyUFN4N3hrNkh4WmVjeTMyWGZ1TkZQT2NYL0tYK3pDUlh2ZktLbGhuM1NwWlMvSTRCYk1oZm9yNVJzcHJDb1Eyc0dVNDZYcWtBS2NFMDFkcUNFSnM0d3FEN050ekl3PT0hdjE=?share_link_id=896920918108)
+[Visualizar EventStorming en Miro](https://miro.com/app/board/uXjVHECaLVQ=/?share_link_id=862745943611)
+
+Vista general del tablero, con el flujo completo de eventos entre los Bounded Context.
+![Overview](../assets/img/chapter-iv/overview-es.jpg)
+
+Identity & Access Management: registro, autenticación y activación de cuentas, evento que habilita el resto de las acciones del sistema.
+![IAM](../assets/img/chapter-iv/iam-es.jpg)
+
+Mineral Extraction & Offline Ops: extracción del mineral, creación del lote y registro de incidentes en campo.
+![Mineral Extraction](../assets/img/chapter-iv/mineral-extraction-es.jpg)
+
+Custody Chain & Logistics: transporte del lote, actualización de ubicación y generación de alertas por desvíos en la cadena de custodia.
+![Custody Chain](../assets/img/chapter-iv/custody-chain-es.jpg)
+
+Refinery Processing: división del lote en planta y asignación de destino de cada lote hijo hacia las joyerías.
+![Refinery Processing](../assets/img/chapter-iv/refinery-processing-es.jpg)
+
+Jewelry Inventory & Certification: registro del lote recibido, generación de certificados y control del stock en joyería.
+![Jewelry Inventory](../assets/img/chapter-iv/jewelry-inventory-es.jpg)
+
+Consumer Experience: verificación pública del certificado y del código QR por parte del consumidor final.
+![Consumer Experience](../assets/img/chapter-iv/consumer-experience-es.jpg)
+
+Reporting & Analytics: generación de reportes de merma y dashboards a partir de los eventos emitidos por los demás contextos.
+![Analytics](../assets/img/chapter-iv/analytics-es.jpg)
+
+Subscriptions & Billing: asignación de planes y habilitación de funcionalidades según el plan que otorga administración.
+![Subscriptions](../assets/img/chapter-iv/subscriptions-es.jpg)
 
 ### 4.6.2. Software Architecture Context Diagram
  
@@ -635,7 +659,7 @@ En el segundo nivel de abstracción (Contenedores), se ha diseñado una arquitec
  
 La interfaz de usuario se gestiona mediante una separación de responsabilidades: una **Web Application** (Java/Spring Boot) encargada exclusivamente de entregar los recursos estáticos al navegador, y una **Single Page Application** (Angular 17) que se ejecuta en el navegador del cliente y renderiza módulos distintos según el JWT recibido — módulo Extraction para el Mining Operator, módulo Logistics para el Logistics Manager, módulo Refinery para el Refinery Operator, módulo Jewelry para el B2B Jeweler, módulo Consumer (público, sin autenticación) para el End Consumer y módulos Analytics y Admin para el MINEX Administrator.
  
-La SPA consume los servicios expuestos por la **OpalTrace API** (Spring Boot), implementada como un monolito modular que organiza la lógica de negocio en 9 Bounded Contexts DDD internos. No se utilizan microservicios ni API Gateway — los Bounded Contexts conviven dentro de una única API con separación estricta de responsabilidades por módulo. Toda la información de la cadena de suministro — Batches, Products, Certifications, Organizations, TrackingEvents y Subscriptions — se persiste en una única instancia de **Microsoft SQL Server**.
+La SPA consume los servicios expuestos por la **OpalTrace API** (Spring Boot), implementada como un monolito modular que organiza la lógica de negocio en 9 Bounded Contexts DDD internos. No se utilizan microservicios ni API Gateway — los Bounded Contexts conviven dentro de una única API con separación estricta de responsabilidades por módulo. Toda la información de la cadena de suministro — Batches, Products, Certifications, Organizations, TrackingEvents y Subscriptions — se persiste en una única instancia de **MySql**.
  
 ![Container Diagram](../assets/img/chapter-iv/structurizr-102990-Containers%20(1).png)
  
@@ -745,101 +769,92 @@ El módulo Subscriptions gestiona la visualización del plan activo, el historia
  
 #### Vista General — Backend
  
-La OpalTrace API se descompone internamente en 9 Bounded Contexts. El flujo principal de Domain Events sigue la cadena de valor del Mineral: `MineralExtracted` → `CustodyTransferred` → `ChildBatchCreated` → `CertificationGranted`, garantizando trazabilidad extremo a extremo. El **Reporting & Analytics BC** consume Domain Events de todos los demás BCs de forma interna. El **Identity & Access Management BC** actúa como BC de soporte transversal, emitiendo el JWT `{ segment, role, planTier }` que todos los BCs validan a través de su Security Connector antes de ejecutar cualquier operación.
+La OpalTrace API se implementa como un monolito modular con 8 Bounded Contexts internos, organizados bajo el paquete base `com.opaltrace.platform`. Cada contexto sigue una estructura de cuatro capas (interfaces, application, domain, infrastructure) y se comunica con los demás exclusivamente a través de un Event Publisher interno, evitando que un Bounded Context importe directamente el repositorio o el aggregate de otro. El flujo principal de eventos sigue la cadena de valor del mineral: MineralExtractedEvent dispara la elegibilidad de custodia, la finalización de la custodia habilita la recepción en refinería, ChildBatchCreatedEvent habilita el ingreso de material certificado a joyería, y CertificationGrantedEvent habilita la verificación pública en Consumer Experience. El BC de Analytics consume eventos de los demás contextos para construir sus reportes, y el BC de Subscriptions se relaciona con IAM a través del cambio de plan del usuario.
  
-![API Overview](../assets/img/chapter-iv/structurizr-102990-API_Overview.png)
+![API Overview](../assets/img/chapter-iv/structurizr-103202-API_Overview.png)
  
-*Figura 12. Vista General del Backend — 9 Bounded Contexts.*
- 
----
- 
-#### BC1 — Identity & Access Management (Backend)
- 
-El **Identity & Access Management BC** es el BC de soporte transversal de la plataforma. Su Aggregate Root `UserAccount` encapsula el comportamiento de registro, autenticación y gestión de roles por organización (RBAC). Al completar el login, emite un JWT con los claims `{ segment, role, planTier }` que determina los módulos accesibles en la SPA y los endpoints permitidos en la API. La Infrastructure layer implementa el `JWTAdapter` para la generación y validación del token. Este BC no requiere Security Connector — es el origen de confianza del sistema.
- 
-![API BC1 IAM](../assets/img/chapter-iv/structurizr-102990-API_BC1_IAM.png)
- 
-*Figura 13. Backend — BC1: Identity & Access Management.*
+Figura 12. Vista general del backend — 8 Bounded Contexts.
  
 ---
  
-#### BC2 — Mineral Extraction (Backend)
+#### BC1 — Identity & Access Management
  
-El **Mineral Extraction BC** gestiona el registro de Batches con validación de `Location` autorizada mediante `GoogleMapsAdapter`, la asignación de IoT Devices y la captura de telemetría en tiempo real a través del `IoTGatewayAdapter`. Implementa operación offline con `ExtractionRecord` de timestamps inmutables y sincronización automática al recuperar conexión. Su Aggregate Root `Batch` impone dos invariantes clave: las coordenadas GPS deben corresponder a una zona de extracción autorizada, y un Batch con `AnomalyDetected` activo no puede avanzar de estado. El Security Connector valida JWT con roles `SUPERVISOR_MINERO` o `OPERADOR_MINERO`.
+El BC de Identity & Access Management gestiona el registro, autenticación y rol de los usuarios de la plataforma a través de su Aggregate Root User. El AuthenticationController expone el endpoint de inicio de sesión, mientras que UsersController gestiona el registro diferenciado para usuarios empresariales y usuarios consumidores. La capa de dominio define los value objects EmailAddress, HashedPassword, UserRole, UserSegment, PlanTier y RucNumber, y emite UserRegisteredEvent al completar el registro. La capa de infraestructura implementa UserRepositoryImpl para la persistencia y TokenService para la generación y validación de JWT.
  
-![API BC2 Extraction](../assets/img/chapter-iv/structurizr-102990-API_BC2_Extraction.png)
+![API BC1 IAM](../assets/img/chapter-iv/structurizr-103202-API_BC1_IAM.png)
  
-*Figura 14. Backend — BC2: Mineral Extraction.*
- 
----
- 
-#### BC3 — Custody Chain (Backend)
- 
-El **Custody Chain BC** gestiona la transferencia formal de custodia de Batches entre Organizations. Su Aggregate Root `Batch` genera el QR Code con firma digital (`QRSignature`), registra actualizaciones de `Location` durante el transporte y dispara automáticamente `GPSTimeoutAlertRaised` cuando un Batch en tránsito supera el tiempo máximo permitido sin actualización de Location. La transferencia de custodia (`CustodyTransferred`) es el Domain Event más crítico del dominio — marca el cambio formal de responsabilidad legal entre Organizations. El Security Connector valida JWT con rol `ENCARGADO_LOGISTICO`.
- 
-![API BC3 Custody](../assets/img/chapter-iv/structurizr-102990-API_BC3_Custody.png)
- 
-*Figura 15. Backend — BC3: Custody Chain.*
+Figura 13. Backend — BC1: Identity & Access Management.
  
 ---
  
-#### BC4 — Refinery Processing (Backend)
+#### BC2 — Mineral Extraction
  
-El **Refinery Processing BC** gestiona la recepción de Batches en planta, su procesamiento y la división en sublotes (`ChildBatch`). Su Aggregate Root `Batch` implementa la invariante de conservación de masa: la suma de `BatchWeight` de los sublotes no puede superar el peso del Batch padre. Cada `ChildBatch` hereda de forma inmutable el `TraceabilityRecord` completo del Batch padre. Si el peso declarado en recepción difiere más del 2% del peso de origen, el sistema dispara automáticamente `AnomalyDetected` con `AlertType.WEIGHT_DISCREPANCY`. El Security Connector valida JWT con rol `OPERARIO_REFINERIA`.
+El BC de Mineral Extraction gestiona el registro de lotes minerales a través de dos Aggregate Roots: MineralBatch y AuthorizedZone. MineralBatchesController expone los endpoints de registro de lotes, generación de código QR y sincronización offline, mientras que MineralBatchAnomaliesController gestiona el reporte de anomalías mediante la entidad AnomalyReport. La capa de dominio define los value objects GpsCoordinate, MineralType, WeightKg, BatchStatus y AnomalyCategory, y emite MineralExtractedEvent, AnomalyDetectedEvent y BatchSyncedEvent. La capa de infraestructura implementa MineralBatchRepositoryImpl y AuthorizedZoneRepositoryImpl.
  
-![API BC4 Refinery](../assets/img/chapter-iv/structurizr-102990-API_BC4_Refinery.png)
+![API BC2 Extraction](../assets/img/chapter-iv/structurizr-103202-API_BC2_Extraction.png)
  
-*Figura 16. Backend — BC4: Refinery Processing.*
- 
----
- 
-#### BC5 — Jewelry Inventory & Certification (Backend)
- 
-El **Jewelry Inventory & Certification BC** es el BC con mayor riqueza de reglas de dominio. Posee dos Aggregate Roots: `Product` y `Certification`. El `Product` impone la separación estricta e inmutable entre `StockCategory.CERTIFIED_OPALTRACE` y `StockCategory.EXTERNAL`, bloqueando automáticamente cualquier operación de fabricación que intente combinar ambos tipos (`MixingAttemptBlocked`). La `Certification` — denominada **Certification de Autenticidad** en el lenguaje ubicuo — solo puede emitirse cuando la `TraceabilityRecord` del Batch es íntegra y completa. La Infrastructure layer incluye un `AWSS3Adapter` para el almacenamiento inmutable de las Certifications en PDF. El Security Connector valida JWT con roles `JOYERO` o `CERTIFICADOR`.
- 
-![API BC5 Jewelry](../assets/img/chapter-iv/structurizr-102990-API_BC5_Jewelry.png)
- 
-*Figura 17. Backend — BC5: Jewelry Inventory & Certification.*
+Figura 14. Backend — BC2: Mineral Extraction.
  
 ---
  
-#### BC6 — Consumer Experience (Backend)
+#### BC3 — Custody Chain
  
-El **Consumer Experience BC** implementa el patrón **CQRS** — es un BC de solo lectura que no modifica ningún Aggregate. Su Aggregate Root `Product` es un read model que proyecta el estado consolidado del Mineral desde todos los BCs anteriores. Es el único BC con acceso público — no requiere JWT ni Security Connector. Ante un QR Code inválido, alterado o con `AnomalyDetected` activo, retorna `AuthenticityCheckFailed` en lugar de `AuthenticityVerified`, garantizando que el End Consumer nunca reciba una validación incorrecta.
+El BC de Custody Chain gestiona la transferencia formal de custodia de lotes minerales a través de su Aggregate Root CustodyTransfer, con la entidad LocationUpdate para el registro del recorrido. CustodyTransferController expone los endpoints para aceptar custodia y actualizar la ubicación durante el transporte. La capa de dominio define el value object CustodyStatus y emite TransportStartedEvent, LocationUpdatedEvent y DelayedTransportAlertEvent cuando el transporte excede el tiempo esperado. La capa de infraestructura implementa CustodyTransferRepositoryImpl.
  
-![API BC6 Consumer](../assets/img/chapter-iv/structurizr-102990-API_BC6_Consumer.png)
+![API BC3 Custody](../assets/img/chapter-iv/structurizr-103202-API_BC3_Custody.png)
  
-*Figura 18. Backend — BC6: Consumer Experience.*
- 
----
- 
-#### BC7 — Administration & Audit (Backend)
- 
-El **Administration & Audit BC** gestiona el ciclo de vida de las Organizations dentro del ecosistema OpalTrace. Su Aggregate Root `Organization` implementa el flujo de aprobación y rechazo de cuentas B2B empresariales, registrando cada acción administrativa en un `AuditRecord` inmutable con actor, timestamp y payload del evento. Al aprobar una cuenta (`AccountApproved`), notifica al Identity & Access Management BC para activar el `UserAccount` correspondiente. El Security Connector valida JWT con rol `SUPERVISOR_MINERO`.
- 
-![API BC7 Admin](../assets/img/chapter-iv/structurizr-102990-API_BC7_Admin.png)
- 
-*Figura 19. Backend — BC7: Administration & Audit.*
+Figura 15. Backend — BC3: Custody Chain.
  
 ---
  
-#### BC8 — Reporting & Analytics (Backend)
+#### BC4 — Refinery Processing
  
-El **Reporting & Analytics BC** consume Domain Events de todos los BCs de forma interna y los transforma en dashboards de trazabilidad, indicadores de merma (`MermaIndicator`) entre etapas y `SustainabilityRecords` ESG. Su Aggregate Root `Report` es un read model — nunca produce Domain Events que afecten a otros BCs. La Infrastructure layer implementa un `DomainEventConsumer` (listener interno) suscrito a todos los BCs productores. El Security Connector valida JWT para proteger los endpoints de reportes. Este BC se corresponde con el módulo `analytics/` del frontend.
+El BC de Refinery Processing gestiona la recepción de lotes en planta y su división en sublotes a través de su Aggregate Root RefineryReceipt, con la entidad SubLotRecord para registrar cada fracción resultante. RefineryBatchesController expone los endpoints para recibir, dividir y completar el procesamiento de un lote. La capa de dominio define el value object ProcessingStatus y emite BatchReceivedAtRefineryEvent, BatchDividedEvent, ChildBatchCreatedEvent y ProcessingCompletedEvent. El sistema valida la conservación de masa entre el lote padre y sus sublotes, lanzando MassConservationViolationException cuando la discrepancia de peso excede el margen permitido.
  
-![API BC8 Reporting](../assets/img/chapter-iv/structurizr-102990-API_BC8_Reporting.png)
+![API BC4 Refinery](../assets/img/chapter-iv/structurizr-103202-API_BC4_Refinery.png)
  
-*Figura 20. Backend — BC8: Reporting & Analytics.*
+Figura 16. Backend — BC4: Refinery Processing.
  
 ---
  
-#### BC9 — Subscriptions & Billing (Backend)
+#### BC5 — Jewelry Inventory
  
-El **Subscriptions & Billing BC** gestiona los planes de suscripción `Silver`, `Gold` y `Platinum` a través de su Aggregate Root `Subscription`. Controla el acceso escalonado a funcionalidades según el `PlanTier` contratado y procesa pagos mediante el `StripeAdapter`. Al producirse un cambio de plan (`PlanUpgraded` o `PlanDowngraded`), notifica al Identity & Access Management BC para que refresque el JWT del usuario con el nuevo claim `planTier`, garantizando que el acceso a funcionalidades se actualice de forma inmediata en toda la plataforma. El Security Connector valida JWT con roles `JOYERO` o `SUPERVISOR_MINERO`.
+El BC de Jewelry Inventory gestiona el inventario de joyería y la emisión de certificados a través de su Aggregate Root JewelryProduct. JewelryInventoryController expone los endpoints para recibir material certificado y registrar material externo, mientras que ProductCertificationController gestiona la solicitud y consulta de certificados. La capa de dominio define los value objects InventoryCategory y CertificationState, y emite MaterialReceivedEvent, CertificationGrantedEvent, CertificationRejectedEvent y CertificateDownloadedEvent. Un producto no certificable lanza ProductNotCertifiableException al intentar emitir su certificado.
  
-![API BC9 Billing](../assets/img/chapter-iv/structurizr-102990-API_BC9_Billing.png)
+![API BC5 Jewelry](../assets/img/chapter-iv/structurizr-103202-API_BC5_Jewelry.png)
  
-*Figura 21. Backend — BC9: Subscriptions & Billing.*
+Figura 17. Backend — BC5: Jewelry Inventory.
+ 
+---
+ 
+#### BC6 — Consumer Experience
+ 
+El BC de Consumer Experience es el único contexto con acceso público de la plataforma, implementado a través de su Aggregate Root ProductVerification y la entidad TraceabilityPoint para representar cada punto del recorrido del mineral. ProductVerificationController expone los endpoints para verificar la autenticidad de un producto por su número de certificado y consultar el mapa de trazabilidad asociado. La capa de dominio define el value object VerificationResult y emite AuthenticityVerifiedEvent, TraceabilityViewedEvent y SuspiciousVerificationAttemptEvent cuando se detecta un patrón de verificación sospechoso.
+ 
+![API BC6 Consumer](../assets/img/chapter-iv/structurizr-103202-API_BC6_Consumer.png)
+ 
+Figura 18. Backend — BC6: Consumer Experience.
+ 
+---
+ 
+#### BC7 — Analytics
+ 
+El BC de Analytics consolida la información generada por los demás contextos a través de su Aggregate Root AnalyticsReport. AnalyticsDashboardController expone los endpoints del dashboard operativo, los indicadores de merma y el análisis comparativo, mientras que EsgReportsController gestiona la generación y consulta de reportes ESG. La capa de dominio define los value objects DashboardMetrics, ShrinkageIndicator, ComparativeMetrics, ReportType y ComplianceStatus, y emite ReportGeneratedEvent, EsgComplianceUpdatedEvent y WeightLossAlertTriggeredEvent.
+ 
+![API BC7 Analytics](../assets/img/chapter-iv/structurizr-103202-API_BC7_Analytics.png)
+ 
+Figura 19. Backend — BC7: Analytics.
+ 
+---
+ 
+#### BC8 — Subscriptions
+ 
+El BC de Subscriptions gestiona los planes de suscripción de las organizaciones a través de su Aggregate Root Subscription, con la entidad BillingRecord para el historial de facturación. SubscriptionsController expone los endpoints de activación, mejora, degradación y cancelación del plan, mientras que BillingController gestiona la consulta del historial de pagos y comprobantes. La capa de dominio define los value objects BillingCycle, PaymentStatus y SubscriptionStatus, y emite SubscriptionActivatedEvent, PlanUpgradedEvent, PlanDowngradedEvent, PlanDowngradeScheduledEvent, SubscriptionCancelledEvent y PaymentFailedEvent. Una operación incompatible con el estado actual de la suscripción lanza IncompatibleOperationsException.
+ 
+![API BC8 Subscriptions](../assets/img/chapter-iv/structurizr-103202-API_BC8_Subscriptions.png)
+ 
+Figura 20. Backend — BC8: Subscriptions.
+ 
 ## 4.7. Software Object-Oriented Design
 
 ### 4.7.1. Class Diagrams
@@ -908,15 +923,7 @@ Adicionalmente, se presentan diagramas de detalle para los tres Aggregates más 
  
 ---
  
-#### Bounded Context 7: Administration & Audit
- 
-![Class Diagram Administration](../assets/img/chapter-iv/BC7_Administration_ClassDiagram-Bounded_Context_7__Administration___Audit.png)
- 
-*Figura 8. Diagrama de clases — BC7: Administration & Audit.*
- 
----
- 
-#### Bounded Context 8: Reporting & Analytics
+#### Bounded Context 7: Reporting & Analytics
  
 ![Class Diagram Reporting Analytics](../assets/img/chapter-iv/BC8_ReportingAnalytics_ClassDiagram-Bounded_Context_8__Reporting___Analytics.png)
  
@@ -924,7 +931,7 @@ Adicionalmente, se presentan diagramas de detalle para los tres Aggregates más 
  
 ---
  
-#### Bounded Context 9: Subscriptions & Billing
+#### Bounded Context 8: Subscriptions & Billing
  
 ![Class Diagram Subscriptions Billing](../assets/img/chapter-iv/BC9_SubscriptionsBilling_ClassDiagram-Bounded_Context_9__Subscriptions___Billing.png)
  
@@ -959,16 +966,12 @@ Este BC posee dos Aggregate Roots independientes. `JewelryProduct` impone la sep
 #### BC6 — Consumer Experience
  
 Implementa el patrón **CQRS**: el Aggregate Root `ConsumerCertificate` es un read model de solo lectura que proyecta el estado consolidado del Mineral desde todos los BCs anteriores. No modifica ningún dato. El Value Object `TraceabilityVerificationResult` encapsula el resultado de la verificación pública vía QR Code. El enum `VerificationFailureCode` detalla la causa exacta del fallo ante un QR inválido, alterado o con anomalías activas.
- 
-#### BC7 — Administration & Audit
- 
-El Aggregate Root `Organization` gestiona el ciclo de vida de las cuentas empresariales B2B. El Entity `AuditRecord` es inmutable por diseño — registra cada acción administrativa con actor, timestamp e IP. Los enums `RejectionCode` y `SuspensionCode` clasifican los motivos de rechazo y suspensión según reglas de negocio definidas por MINEX.
- 
-#### BC8 — Reporting & Analytics
+
+#### BC7 — Reporting & Analytics
  
 El Aggregate Root `AnalyticsReport` es un read model event-driven que consolida información de todos los BCs. El Value Object `MermaIndicator` calcula la pérdida de peso entre etapas. El Value Object `SustainabilityRecord` agrega las métricas ESG en tres dimensiones: `environmentalScore`, `socialScore` y `ethicalScore`. El Entity `DashboardSnapshot` captura el estado del sistema en un momento dado para el Dashboard de monitoreo en tiempo real.
  
-#### BC9 — Subscriptions & Billing
+#### BC8 — Subscriptions & Billing
  
 El Aggregate Root `Subscription` controla el acceso escalonado a funcionalidades mediante el Value Object `FeatureSet`, que define los límites de uso según `PlanTierType`: `SILVER`, `GOLD` o `PLATINUM`. El Entity `BillingRecord` registra cada transacción de pago con su estado en el enum `InvoiceStatus`. Al cambiar de plan, `Subscription` emite `PlanUpgraded` o `PlanDowngraded` para que el BC1 refresque el JWT del usuario con el nuevo `planTier`.
  
@@ -1012,17 +1015,15 @@ El `JewelryCertificate` es el Aggregate Root con la invariante más compleja del
  
 ### 4.8.1. Database Diagrams
  
-El diseño de base de datos de OpalTrace sigue una arquitectura relacional implementada en **Microsoft SQL Server** y **Verbatelo**, organizada en torno a los 9 Bounded Contexts definidos en la arquitectura DDD. Cada Bounded Context posee sus propias tablas con un prefijo identificador (`iam_`, `mineral_`, `custody_`, `refinery_`, `jewelry_`, `consumer_`, `admin_`, `analytics_`, `billing_`), garantizando separación lógica de responsabilidades y bajo acoplamiento entre contextos.
+El diseño de base de datos de OpalTrace está implementado en MySQL 8.0 con InnoDB, organizado en torno a las entidades centrales del dominio. Las tablas utilizan `bigint` con `AUTO_INCREMENT` como identificador primario y campos `created_at`/`updated_at` en todas las entidades. Los enums del dominio se implementan como columnas `ENUM` nativas de MySQL. Las relaciones entre tablas se establecen mediante Foreign Keys explícitas.
  
-Las principales características del diseño son las siguientes. Primero, los Value Objects del dominio se persisten como columnas embebidas dentro de la tabla de su Aggregate Root — por ejemplo, `GPSLocation` se almacena como `location_latitude` y `location_longitude` en `mineral_batches`, evitando joins innecesarios para datos que son parte intrínseca del aggregate. Segundo, los Enums del dominio se implementan como columnas con constraints `CHECK`, garantizando integridad referencial sin tablas adicionales de catálogo. Tercero, las relaciones entre Bounded Contexts se establecen únicamente a través de Foreign Keys hacia las tablas raíz (`iam_organizations`, `iam_user_accounts`, `mineral_batches`), respetando el principio DDD de que los BCs se referencian por identidad y no por objeto. Cuarto, la tabla `traceability_tracking_events` centraliza el historial completo de eventos de trazabilidad de cada Batch a lo largo de toda la cadena de suministro, permitiendo construir el `TraceabilityRecord` sin duplicar información entre contextos. Finalmente, todos los identificadores primarios son de tipo `UNIQUEIDENTIFIER` (UUID), eliminando dependencias de secuencias y facilitando la distribución futura del sistema.
- 
-A continuación se presentan los diagramas de base de datos para cada Bounded Context, mostrando tablas, columnas, constraints y relaciones.
+A continuación se presentan los diagramas de base de datos por tabla, tal como fueron generados desde Redgate Data Modeler.
  
 ---
  
-#### Vista General — Todos los Bounded Contexts
+#### Vista General
  
-El diagrama de vista general muestra la totalidad de las 35 tablas del sistema y las relaciones entre Bounded Contexts. Se evidencia que `iam_organizations` e `iam_user_accounts` actúan como tablas pivote referenciadas por todos los demás contextos, y que `mineral_batches` es la tabla central de la cadena de trazabilidad, siendo referenciada por los BCs de Custody, Refinery, Jewelry y Consumer.
+El diagrama de vista general muestra la totalidad de las tablas del sistema y sus relaciones. `mineral_batches` actúa como tabla central referenciada por `anomaly_reports`; `custody_transfers` es referenciada por `location_updates`; `refinery_receipts` es referenciada por `sub_lot_records`; y `subscriptions` es referenciada por `billing_records`.
  
 ![Database Overview](../assets/img/chapter-iv/DB_Overview.png)
  
@@ -1030,90 +1031,130 @@ El diagrama de vista general muestra la totalidad de las 35 tablas del sistema y
  
 ---
  
-#### BC1 — Identity & Access Management
+#### users
  
-El contexto de identidad gestiona las tablas `iam_organizations`, `iam_user_accounts` e `iam_role_assignments`. La tabla `iam_organizations` almacena los datos de cada empresa registrada en la plataforma, incluyendo su tipo (`MINERA`, `TRANSPORTISTA`, `REFINERIA`, `JOYERIA`), su estado de aprobación y el `plan_tier` contratado. La tabla `iam_user_accounts` centraliza las credenciales y el rol de cada usuario, almacenando el `hashed_password` y los claims `role`, `segment` y `plan_tier` que conforman el JWT emitido por este contexto. La tabla `iam_role_assignments` registra el historial de asignaciones de roles por cuenta.
+Tabla central de identidad. Almacena credenciales, rol (`ADMIN`, `CONSUMER`, `SUPERVISOR`), segmento (`MINING`, `JEWELRY`, `CONSUMER`) y `plan_tier` contratado. Referenciada implícitamente por la mayoría de tablas mediante campos `_user_id`.
  
-![Database BC1 IAM](../assets/img/chapter-iv/DB_BC1_IAM.png)
+![Database Users](../assets/img/chapter-iv/DB_USERS.png)
  
-*Figura 2. Diagrama de base de datos — BC1: Identity & Access Management.*
- 
----
- 
-#### BC2 — Mineral Extraction & Offline Ops
- 
-El contexto de extracción gestiona cuatro tablas. `mineral_batches` es la tabla central del sistema — almacena el Aggregate Root `MineralBatch` con el `traceability_code` único, el `qr_code`, el tipo de mineral, el peso, las coordenadas GPS embebidas (`location_latitude`, `location_longitude`) y el `status` del Batch a lo largo de su ciclo de vida. `mineral_anomaly_reports` registra cada anomalía detectada con su `alert_type` y estado de resolución. `mineral_extraction_records` persiste los registros de extracción con timestamp sellado e inmutable. `mineral_sync_queue_items` gestiona la cola de operaciones offline pendientes de sincronización. Adicionalmente, la tabla `traceability_tracking_events` inicia su historial en este BC con el evento `MINERAL_EXTRACTED`.
- 
-![Database BC2 Mineral Extraction](../assets/img/chapter-iv/DB_BC2_Mineral%20Extraction%20%26%20Offline%20Ops.png)
- 
-*Figura 3. Diagrama de base de datos — BC2: Mineral Extraction & Offline Ops.*
+*Figura 2. Tabla users.*
  
 ---
  
-#### BC3 — Custody Chain & Logistics
+#### mineral_batches
  
-El contexto de cadena de custodia gestiona cinco tablas. `custody_batches` referencia al `mineral_batches` padre y mantiene el estado de transporte (`EN_ORIGEN`, `EN_TRANSITO`, `ENTREGADO`, `BLOQUEADO`) junto con la última `Location` conocida embebida. `custody_qr_codes` almacena el hash de firma digital del QR Code generado para cada Batch. `custody_transport_operations` registra cada operación de transporte con la ruta, kilómetros estimados y tiempo máximo permitido. `custody_location_updates` persiste cada actualización GPS durante el transporte, asociada a la operación correspondiente. `custody_transfers` registra cada transferencia formal de custodia entre Organizations, constituyendo el `Domain Event` más crítico de la cadena.
+Tabla central de trazabilidad. Almacena el `batch_id` único, tipo de mineral, peso, coordenadas GPS de origen embebidas, estado del lote (`EN_ORIGEN`, `EN_TRANSITO`, `EN_PLANTA`, `PROCESADO`, `CERTIFICADO`) y el `qr_code_data` generado.
  
-![Database BC3 Custody Chain](../assets/img/chapter-iv/DB_BC3_Custody%20Chain%20%26%20Logistics.png)
+![Database Mineral Batches](../assets/img/chapter-iv/DB_MINERAL_BATCHES.png)
  
-*Figura 4. Diagrama de base de datos — BC3: Custody Chain & Logistics.*
- 
----
- 
-#### BC4 — Refinery Processing
- 
-El contexto de refinería gestiona cuatro tablas. `refinery_batches` referencia al `mineral_batches` padre y almacena la invariante de conservación de masa mediante `mass_balance_tolerance_pct` y `mass_balance_is_valid`. El campo `inherited_traceability_code` garantiza que cada Batch en refinería conserve la trazabilidad de su origen. `refinery_child_batches` registra cada sublote generado en la división, con su peso y organización de destino. `refinery_processing_operations` persiste cada operación de procesamiento (`SMELTING`, `REFINING`, `ASSAYING`, `CASTING`). `refinery_shrinkage_records` almacena la merma en cada etapa, con `input_weight`, `output_weight` y `loss_pct`, datos consumidos por el BC8 para los reportes ESG.
- 
-![Database BC4 Refinery](../assets/img/chapter-iv/DB_BC4_Refinery.png)
- 
-*Figura 5. Diagrama de base de datos — BC4: Refinery Processing.*
+*Figura 3. Tabla mineral_batches.*
  
 ---
  
-#### BC5 — Jewelry Inventory & Certification
+#### anomaly_reports
  
-El contexto de joyería gestiona cinco tablas correspondientes a los dos Aggregate Roots del dominio. Para `JewelryProduct`: `jewelry_products` almacena la columna `stock_category` con constraint `CHECK ('CERTIFIED_OPALTRACE', 'EXTERNAL')` que implementa la invariante de segregación ética; `jewelry_inventory_items` gestiona el stock con `StorageLocation` embebida; `jewelry_fabrication_orders` registra las órdenes de fabricación con estado `BLOCKED` cuando se detecta mezcla de stocks; `jewelry_fabrication_order_components` persiste los componentes de cada orden. Para `JewelryCertificate`: `jewelry_certificates` almacena el estado de la Certification de Autenticidad, el `rejection_code` en caso de rechazo, y la URL del PDF almacenado en AWS S3.
+Registra anomalías detectadas sobre un lote. Referencia a `mineral_batches` mediante FK en `batch_id`. Almacena la categoría (`WEIGHT_DISCREPANCY`, `BROKEN_SEAL`, `CONTAMINATION`, etc.), descripción, evidencia fotográfica y estado de resolución.
  
-![Database BC5 Jewelry](../assets/img/chapter-iv/DB_BC5_Jewelry.png)
+![Database Anomaly Reports](../assets/img/chapter-iv/DB_ANOMALY_REPORTS.png)
  
-*Figura 6. Diagrama de base de datos — BC5: Jewelry Inventory & Certification.*
- 
----
- 
-#### BC6 — Consumer Experience
- 
-El contexto de experiencia del consumidor gestiona dos tablas de solo lectura que implementan el patrón CQRS. `consumer_certificates` es una proyección optimizada del estado de certificación de cada Product, indexada por `qr_code_hash` para consultas públicas de alta frecuencia sin autenticación. Almacena el `journey_map_json` con el recorrido geográfico completo del Mineral en formato JSON. `consumer_verification_events` registra cada intento de verificación vía QR Code con su resultado (`SUCCESS`, `FAILED`, `NOT_FOUND`) y el `failure_code` correspondiente si la verificación falló.
- 
-![Database BC6 Consumer Experience](../assets/img/chapter-iv/DB_BC6_Consumer_Experience.png)
- 
-*Figura 7. Diagrama de base de datos — BC6: Consumer Experience.*
+*Figura 4. Tabla anomaly_reports.*
  
 ---
  
-#### BC7 — Administration & Audit
+#### authorized_zones
  
-El contexto de administración gestiona la tabla `admin_audit_records`, que implementa el Entity `AuditRecord` con carácter inmutable por diseño — ningún registro de auditoría puede ser modificado una vez creado. Almacena el `event_type` (`ACCOUNT_APPROVED`, `ACCOUNT_REJECTED`, `ORGANIZATION_SUSPENDED`, etc.), el `actor_id` responsable de la acción, la `ip_address` desde donde se ejecutó, y el payload en formato JSON con el estado anterior y posterior del objeto afectado (`payload_before`, `payload_after`). Este contexto referencia a `iam_organizations` e `iam_user_accounts` del BC1 para mantener la trazabilidad administrativa completa.
+Almacena zonas geográficas autorizadas para operaciones mineras. Define un área circular mediante `center_latitude`, `center_longitude` y `radius_meters`.
  
-![Database BC7 Administration](../assets/img/chapter-iv/DB_BC7_Administration%20%26%20Audit.png)
+![Database Authorized Zones](../assets/img/chapter-iv/DB_AUTHORIZED_ZONES.png)
  
-*Figura 8. Diagrama de base de datos — BC7: Administration & Audit.*
- 
----
- 
-#### BC8 — Reporting & Analytics
- 
-El contexto de reportes gestiona cuatro tablas de solo lectura orientadas al análisis de datos. `analytics_reports` centraliza cada reporte generado con su tipo y período. `analytics_merma_indicators` persiste el Value Object `MermaIndicator` con `stage_origin`, `stage_destination`, `input_weight`, `output_weight` y `loss_pct` por etapa de procesamiento. `analytics_sustainability_records` almacena el Value Object `SustainabilityRecord` con los tres scores ESG: `environmental_score`, `social_score` y `ethical_score`. `analytics_dashboard_snapshots` captura el estado operativo del sistema en un momento dado, incluyendo `active_batches`, `pending_anomalies`, `certifications_granted` y `certification_rate` para el Dashboard de monitoreo en tiempo real.
- 
-![Database BC8 Reporting](../assets/img/chapter-iv/DB_BC8_Reporting.png)
- 
-*Figura 9. Diagrama de base de datos — BC8: Reporting & Analytics.*
+*Figura 5. Tabla authorized_zones.*
  
 ---
  
-#### BC9 — Subscriptions & Billing
+#### custody_transfers
  
-El contexto de suscripciones gestiona tres tablas. `billing_subscriptions` almacena el Aggregate Root `Subscription` con el `plan_tier` contratado, el `billing_cycle` (`MONTHLY`, `ANNUAL`) y el Value Object `FeatureSet` embebido como columnas booleanas (`has_offline_mode`, `has_esg_reporting`, `has_advanced_analytics`, `has_api_access`) y límites numéricos (`max_batches_per_month`, `max_users`). También almacena el `stripe_customer_id` para la integración con Stripe API. `billing_records` persiste cada factura con su monto, moneda, estado (`PENDING`, `PAID`, `OVERDUE`, `CANCELLED`) y el `stripe_invoice_id` de referencia. `billing_plan_change_records` registra el historial de cambios de plan con el tier anterior y nuevo, implementando el Value Object `PlanChangeRecord` de forma inmutable.
+Registra cada transferencia de custodia de un lote. Almacena coordenadas de inicio y fin del trayecto, estado (`PENDING`, `IN_TRANSIT`, `DELIVERED`) y referencia al `batch_id` correspondiente.
  
-![Database BC9 Subscriptions Billing](../assets/img/chapter-iv/DB_BC9_Subscriptions%26Billing.png)
+![Database Custody Transfers](../assets/img/chapter-iv/DB_CUSTODY_TRANSFERS.png)
  
-*Figura 10. Diagrama de base de datos — BC9: Subscriptions & Billing.*
+*Figura 6. Tabla custody_transfers.*
+ 
+---
+ 
+#### location_updates
+ 
+Persiste cada actualización GPS durante un transporte activo. Referencia a `custody_transfers` mediante FK en `transfer_id`.
+ 
+![Database Location Updates](../assets/img/chapter-iv/DB_LOCATION_UPDATES.png)
+ 
+*Figura 7. Tabla location_updates.*
+ 
+---
+ 
+#### refinery_receipts
+ 
+Registra la recepción de un lote en refinería. Almacena el peso declarado vs. el peso original para calcular `weight_discrepancy_percent`, y las marcas de tiempo de recepción y fin de procesamiento.
+ 
+![Database Refinery Receipts](../assets/img/chapter-iv/DB_REFINERY_RECEIPTS.png)
+ 
+*Figura 8. Tabla refinery_receipts.*
+ 
+---
+ 
+#### sub_lot_records
+ 
+Registra los sublotes generados a partir de un lote padre en refinería. Referencia a `refinery_receipts` mediante FK en `receipt_id`.
+ 
+![Database Sub Lot Records](../assets/img/chapter-iv/DB_SUB_LOT_RECORDS.png)
+ 
+*Figura 9. Tabla sub_lot_records.*
+ 
+---
+ 
+#### jewelry_products
+ 
+Almacena los productos de joyería con su estado de certificación (`PENDING`, `CERTIFIED`, `REJECTED`, `REVOKED`) y categoría de stock (`CERTIFIED_STOCK`, `EXTERNAL_STOCK`). El campo `can_generate_certificate` implementa la invariante de elegibilidad para certificación.
+ 
+![Database Jewelry Products](../assets/img/chapter-iv/DB_JEWELRY_PRODUCTS.png)
+ 
+*Figura 10. Tabla jewelry_products.*
+ 
+---
+ 
+#### product_verifications
+ 
+Registra cada intento de verificación pública de un producto vía QR. Almacena el resultado (`AUTHENTIC`, `NOT_VERIFIABLE`), la razón de fallo si aplica, y la IP del verificador.
+ 
+![Database Product Verifications](../assets/img/chapter-iv/DB_PRODUCT_VERIFICATIONS.png)
+ 
+*Figura 11. Tabla product_verifications.*
+ 
+---
+ 
+#### analytics_reports
+ 
+Centraliza los reportes generados por el sistema. Almacena el tipo (`ESG`, `SHRINKAGE`, `DASHBOARD`, `COMPARATIVE`), el período analizado y el `compliance_status` resultante.
+ 
+![Database Analytics Reports](../assets/img/chapter-iv/DB_ANALYTICS_REPORTS.png)
+ 
+*Figura 12. Tabla analytics_reports.*
+ 
+---
+ 
+#### subscriptions
+ 
+Almacena la suscripción activa de cada usuario con su `plan_tier` (`SILVER`, `GOLD`, `PLATINUM`), ciclo de facturación (`MONTHLY`, `ANNUAL`), estado (`ACTIVE`, `SUSPENDED`, `CANCELLED`) y datos de downgrade programado.
+ 
+![Database Subscriptions](../assets/img/chapter-iv/DB_SUBSCRIPTIONS.png)
+ 
+*Figura 13. Tabla subscriptions.*
+ 
+---
+ 
+#### billing_records
+ 
+Registra cada transacción de pago asociada a una suscripción. Almacena el monto, `invoice_number` único, método de pago y estado (`COMPLETED`, `REJECTED`, `REFUNDED`).
+ 
+![Database Billing Records](../assets/img/chapter-iv/DB_BILLING_RECORDS.png)
+ 
+*Figura 14. Tabla billing_records.*
