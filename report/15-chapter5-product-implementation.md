@@ -1094,7 +1094,125 @@ Para cada segmento objetivo se establecieron los elementos a incluir en la sesi�
 
 ### 5.3.2. Registro de Entrevistas
 
-### 5.3.2. Evaluaciones según heurísticas
+#### Segmento 1: Empresas Mineras
+
+##### Entrevista 1:
+
+- Nombres y Apellidos: Efraín Zelaya
+- Edad: 42 años
+- Ocupación: Ingeniero metalurgista
+- Distrito: Huaura
+- Tiempo: 0:00 - 8:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Efraín comprendió de inmediato el propósito de la plataforma al revisar el Landing Page, señalando que la propuesta de valor se alinea directamente con las carencias que enfrenta en su planta concentradora. Al navegar el módulo de registro de lotes, encontró el proceso intuitivo y comparable a las plantillas que ya utiliza, aunque destacó que la información capturada es más completa y confiable. Valoró positivamente el sistema de alertas de anomalía, que consideró muy superior al seguimiento por WhatsApp que aplica actualmente. Al revisar el dashboard de Analytics, identificó los KPIs como relevantes para la toma de decisiones operativas. Sugirió incorporar una modalidad de registro offline para zonas con conectividad limitada en minas remotas. Puntuó la plataforma con 8/10 y afirmó que la recomendaría a sus colegas del sector.
+
+![Screenshot Efraín](../assets/img/chapter-ii/interview-Efraín.jpeg)
+
+##### Entrevista 2:
+
+- Nombres y Apellidos: Max Alonso Yapo Figueroa
+- Edad: 31 años
+- Ocupación: Ingeniero metalurgista – Jefe de Metalurgia y Operaciones
+- Distrito: Arequipa
+- Tiempo: 8:01 - 15:30
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Max reconoció de inmediato en el Landing Page la solución al problema de control de pesaje y trazabilidad que enfrenta en su operación. Durante la sesión de validación, probó el módulo de Fleet Operations y destacó que el registro de ubicación y tonelaje en tiempo real habría evitado los errores de acumulación que actualmente detecta con semanas de retraso. Al revisar el módulo de monitoreo, confirmó que las alertas de anomalía son claras y accionables. Consideró que el dashboard de Analytics complementa bien su flujo en Excel, ofreciendo la ventaja del dato en tiempo real sin duplicar trabajo. Sugirió evaluar la integración con balanzas existentes en planta. Puntuó la plataforma con 9/10, destacando que es exactamente lo que necesitaban para cerrar la brecha entre el dato operativo y la toma de decisiones.
+
+![Screenshot Max](../assets/img/chapter-ii/interview-Max.jpg)
+
+##### Entrevista 3:
+
+- Nombres y Apellidos: Rick Boris Guill Ortiz
+- Edad: 34 años
+- Ocupación: Ingeniero de minas – Analista de control de proyectos mineros
+- Distrito: Ate, Lima
+- Tiempo: 15:31 - 23:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Rick validó que el Landing Page comunica con claridad el problema de trazabilidad y la solución propuesta, aunque indicó que podría ser más explícito en los beneficios para el rol de control de proyectos. Durante la prueba del módulo de reporte de incidentes, simuló un escenario que en su operación actual tarda hasta una semana en documentarse; con OpalTrace lo completó en menos de tres minutos. Consideró que el formulario recoge los campos esenciales aunque sugirió añadir la posibilidad de adjuntar evidencia fotográfica directamente desde el formulario. Al revisar Analytics, encontró los KPIs alineados con los indicadores que gestiona en Power BI y propuso una exportación de datos para análisis avanzado. Puntuó la plataforma con 8/10 y señaló que adoptaría OpalTrace como sistema de referencia para el control de proyectos.
+
+![Screenshot Rick](../assets/img/chapter-ii/interview-Rick.png)
+
+---
+
+#### Segmento 2: Joyerías
+
+##### Entrevista 1:
+
+- Nombres y Apellidos: Yesiliany Canchica Muñoz
+- Edad: 21 años
+- Ocupación: Secretaria de Joyería
+- Distrito: Surquillo
+- Tiempo: 23:01 - 29:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Yesiliany comprendió al ver el Landing Page que OpalTrace está dirigido a negocios como el suyo, aunque señaló que la propuesta de valor para joyerías podría destacarse con más visibilidad en la página principal. Al probar el módulo de inventario, encontró el proceso de registro de piezas más organizado que el sistema manual que utiliza actualmente. La generación del certificado QR fue la funcionalidad que más le impresionó: consideró que la información incluida, especialmente el origen y el quilataje certificado, es exactamente lo que sus clientes exigen cuando adquieren piezas de valor. Al consultar el historial de trazabilidad de un material, encontró la información comprensible y confiable. Sugirió añadir la posibilidad de exportar el certificado en PDF para imprimirlo y entregarlo físicamente al cliente. Puntuó la plataforma con 8/10.
+
+![Screenshot Yesiliany](../assets/img/chapter-ii/interview-Yesiliany.png)
+
+##### Entrevista 2:
+
+- Nombres y Apellidos: Dante Jhosué Javier Reyes
+- Edad: 23 años
+- Ocupación: Gestiona negocio de joyería familiar
+- Distrito: Santiago de Surco
+- Tiempo: 29:01 - 35:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Dante identificó de inmediato en el Landing Page la solución al problema que más le ha costado ventas: no poder demostrar el origen del material a sus clientes. Al probar el módulo de certificación QR, señaló que la información incluida en el certificado responde exactamente a las preguntas que le hacen sus clientes antes de decidir una compra. Al consultar el historial de trazabilidad de un material, encontró la cadena de información clara y suficientemente detallada para generar confianza. Destacó que poder compartir ese certificado directamente en el punto de venta cambiaría completamente la dinámica con sus clientes. Sugirió añadir la opción de compartir el certificado vía WhatsApp con un solo clic. Puntuó la plataforma con 9/10 y afirmó que la adoptaría en su negocio tan pronto esté disponible.
+
+![Screenshot Dante](../assets/img/chapter-ii/interview-Dante.png)
+
+##### Entrevista 3:
+
+- Nombres y Apellidos: Mauricio Julio Perez Lopez
+- Edad: 23 años
+- Ocupación: Especialista en comercialización de joyas
+- Distrito: San Borja
+- Tiempo: 35:01 - 42:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Mauricio, con su experiencia en validación de autenticidad, evaluó la plataforma con criterio técnico. Consideró que el Landing Page transmite profesionalismo y que la propuesta de valor es sólida y creíble para el sector. Al consultar el historial de trazabilidad de un material, destacó que la completitud de la cadena, desde la extracción hasta el inventario de la joyería, habría sido clave para prevenir el incidente que vivieron con un proveedor que entregó material falsificado. Encontró el proceso de registro de piezas claro y bien estructurado. Sugirió incorporar una alerta automática cuando la cadena de trazabilidad de un material presenta vacíos o saltos sin justificación. Señaló también que le gustaría ver integración con los sistemas de certificación que ya utilizan. Puntuó la plataforma con 8/10.
+
+![Screenshot Mauricio](../assets/img/chapter-ii/interview-Mauricio-Olera.png)
+
+---
+
+#### Segmento 3: Usuarios Consumidores
+
+##### Entrevista 1:
+
+- Nombres y Apellidos: Carla Gallardo Morales
+- Edad: 19 años
+- Ocupación: Estudiante universitaria
+- Distrito: La Molina
+- Tiempo: 42:01 - 48:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Carla entendió de inmediato al ver el Landing Page para qué sirve la plataforma, señalando que aborda directamente su principal preocupación: saber si lo que compra es auténtico y de origen ético. Le generó confianza la información sobre la trazabilidad del mineral presentada en la página. Al escanear el código QR de una joya, encontró el proceso sencillo e intuitivo, comparable a escanear un código en cualquier aplicación de su uso diario. La información de trazabilidad mostrada le resultó fácil de entender y le permitió ver claramente el origen del mineral. La sección de certificación ESG le generó confianza adicional en el origen libre de conflicto del material. Sugirió añadir información sobre el impacto ambiental de la extracción y el porcentaje de huella de carbono del proceso. Puntuó la plataforma con 9/10 y afirmó que la usaría activamente antes de cada compra de joyería.
+
+![Screenshot Carla](../assets/img/chapter-ii/interview-Carla.png)
+
+##### Entrevista 2:
+
+- Nombres y Apellidos: Mauricio Moquillaza
+- Edad: 19 años
+- Ocupación: Estudiante
+- Distrito: Jesús María
+- Tiempo: 48:01 - 55:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Mauricio, que se declara escéptico del marketing de marcas, valoró especialmente que el Landing Page ofrece información verificable en lugar de promesas genéricas. Al escanear el código QR y revisar la información de trazabilidad, encontró en OpalTrace exactamente el tipo de dato objetivo que no puede obtener del mercado actual: pureza del material, ubicación de extracción y cadena de custodia verificada. Consideró que la información presentada es fácil de entender incluso sin conocimiento técnico previo. Valoró la transparencia de la cadena de valor como un diferenciador real frente a otras marcas. Sugirió añadir la posibilidad de que otros consumidores puedan valorar o comentar cada etapa de la cadena de trazabilidad para aumentar la credibilidad colectiva. Puntuó la plataforma con 8/10.
+
+![Screenshot Mauricio](../assets/img/chapter-ii/interview-Mauricio.png)
+
+##### Entrevista 3:
+
+- Nombres y Apellidos: Oliver Galindo
+- Edad: 20 años
+- Ocupación: Estudiante
+- Distrito: Comas
+- Tiempo: 55:01 - 62:00
+- Link: [Link de las entrevistas](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202416107_upc_edu_pe/IQALz-3qssjESZ1UptetozBUAcUGFsXLHQVL7K6GY0CA4uo?e=iBTSVT)
+- Resumen: Oliver encontró el Landing Page limpio y fácil de entender, señalando que comprendió el propósito de la plataforma en los primeros segundos sin necesidad de leer el contenido completo. Al escanear el código QR de una joya, destacó la simplicidad del proceso y la rapidez con la que accedió al historial completo del mineral. Como comprador orientado a la legalidad y la ética, la información sobre el origen responsable del material le resultó especialmente relevante y confiable. Señaló que tener acceso a esta información directamente en el punto de compra aumentaría significativamente su confianza al adquirir una pieza. Sugirió añadir una representación visual del recorrido del mineral en forma de mapa interactivo para hacer la experiencia más atractiva. Puntuó la plataforma con 8/10 y afirmó que la utilizaría en sus próximas compras de joyas para ocasiones especiales.
+
+![Screenshot Oliver](../assets/img/chapter-ii/interview-Oliver.png)
+
+### 5.3.3. Evaluaciones según heurísticas
 
 # UX Heuristics & Principles Evaluation
 ### Usability — Inclusive Design — Information Architecture
