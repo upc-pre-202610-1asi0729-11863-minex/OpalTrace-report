@@ -272,4 +272,10 @@ Durante el Sprint, la redacción del informe se realizó de manera conjunta por 
 
 - [5.4. Video About-the-Product](./report/15-chapter5-product-implementation.md#54-video-about-the-product)
 
+[CONCLUSIONES](./report/18-conclusiones)
+
+[BIBLOGRAFÍA](./report/19-biblografia)
+
+[ANEXOS](./report/20-anexos)
+
 <div style="page-break-after: always"></div>
