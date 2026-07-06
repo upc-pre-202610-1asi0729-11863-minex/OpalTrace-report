@@ -52,18 +52,25 @@ Junio, 2026
 
 ## PROJECT REPORT COLLABORATION INSIGHTS
 
-El repositorio del Project Report se encuentra disponible en la organización de GitHub del equipo en la siguiente URL: 
+El repositorio del Project Report se encuentra disponible en la organización de GitHub del equipo en la siguiente URL:  
 
-[Repositorio Reporte](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-report)
+[Repositorio Reporte](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-report) `https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-report`
 
-[Repositorio WebApp](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-webapp)
+[Repositorio Website](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-website) `https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-website`
 
-[Repositorio Platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform)
+[Repositorio WebApp](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-webapp) `https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-webapp`
+
+[Repositorio Platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) `https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform`
 
 Durante el Sprint, la redacción del informe se realizó de manera conjunta por todo el equipo. La organización del trabajo consistió en asignar capítulos y secciones a cada integrante, quienes incorporaron sus contribuciones mediante commits en subramas que luego se integraron en la rama develop del repositorio. Este enfoque permitió conservar un registro ordenado de las modificaciones y asegurar la trazabilidad de cada aporte.
 
-![Insight](../assets/img/sprint2/insight.png)
+**AV1:**  
+![Insight](./assets/img/sprint1/insight.png)
 
+**TB1:**  
+![Insight](./assets/img/sprint2/insight.png)
+
+**AV2:**  
 ![Insight](./assets/img/sprint3/insight.png)
 
 <div style="page-break-after: always"></div>
