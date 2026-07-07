@@ -1017,6 +1017,312 @@ El equipo completó el Sprint 3 implementando el backend completo en un ciclo de
 
 ![Insight](../assets/img/sprint3/insight.png)
 
+<div style="page-break-after: always"></div>
+
+### 5.2.4. Sprint 4
+
+### 5.2.4.1. Sprint Planning 4
+
+<table>
+  <tr>
+    <th colspan="2">Sprint #</th>
+    <th colspan="2">Sprint 4</th>
+  </tr>
+  <tr>
+    <th colspan="4">Sprint Planning Background</th>
+  </tr>
+  <tr>
+    <td colspan="2">Date</td>
+    <td colspan="2">2026-06-22</td>
+  </tr>
+  <tr>
+    <td colspan="2">Time</td>
+    <td colspan="2">07:00 PM (GMT-5)</td>
+  </tr>
+  <tr>
+    <td colspan="2">Location</td>
+    <td colspan="2">Reunión virtual vía Discord</td>
+  </tr>
+  <tr>
+    <td colspan="2">Prepared By</td>
+    <td colspan="2">Vergaray Calderon, Rose Almendra</td>
+  </tr>
+  <tr>
+    <td colspan="2">Attendees (to planning meeting)</td>
+    <td colspan="2">Armestar Felipa, Adrian Andres / Baldeon Vivar, Santiago Armando / Philco Mota, Katty Yolanda / Vergaray Calderon, Rose Almendra / Yi Torrejon, Ethan Raul</td>
+  </tr>
+  <tr>
+    <th colspan="4">Sprint 3 Review Summary</th>
+  </tr>
+  <tr>
+    <td colspan="4">En el Sprint 3 se entregó el backend completo de OpalTrace como Web Services REST con Spring Boot bajo arquitectura DDD, cubriendo los ocho bounded contexts con seguridad JWT, migraciones Flyway y documentación OpenAPI accesible vía Swagger UI. La integración se realizó mediante 14 Pull Requests con GitFlow. Todas las Technical Stories comprometidas fueron completadas al 100%, con un total de 33 Story Points entregados.</td>
+  </tr>
+  <tr>
+    <th colspan="4">Sprint 3 Retrospective Summary</th>
+  </tr>
+  <tr>
+    <td colspan="4"><b>Fortalezas:</b> Reutilización del conocimiento de dominio del Sprint 2, arquitectura DDD consistente en los ocho bounded contexts y uso de Flyway desde el primer commit. <b>Áreas de mejora:</b> El backend no fue validado contra el frontend real (que seguía consumiendo json-server), lo que dejó discrepancias de contrato entre los resources del backend y los modelos del frontend; además, los datos de demostración contenían fechas e IDs desactualizados (2025). <b>Acuerdos para Sprint 4:</b> (1) Mantener la misma distribución de bounded contexts para que cada integrante realice la integración frontend-backend extremo a extremo de los contextos que ya domina. (2) Desplegar el backend en Railway y automatizar el despliegue del frontend en GitHub Pages con GitHub Actions. (3) Ejecutar la demo completa end-to-end (extracción → custodia → refinería → joyería → verificación del consumidor) antes del Sprint Review, corrigiendo todo bug funcional encontrado.</td>
+  </tr>
+  <tr>
+    <th colspan="4">Sprint Goal &amp; User Stories</th>
+  </tr>
+  <tr>
+    <td colspan="2">Sprint 4 Goal</td>
+    <td colspan="2">Our focus is on integrating the OpalTrace frontend with the real backend Web Services and delivering a production-ready, fully deployed product. We believe it delivers a complete end-to-end traceability experience — from mineral batch registration to public consumer verification — running against the Spring Boot API deployed on Railway, with the Angular frontend continuously deployed to GitHub Pages via GitHub Actions. This will be confirmed when every bounded context consumes real endpoints instead of json-server mocks, JWT authentication is enforced on all protected endpoints, users can manage their profile and multi-method billing, PDF certificates embed the OpalTrace logo and a unique verification QR code, and the full demo flow completes without functional defects.</td>
+  </tr>
+  <tr>
+    <td colspan="2">Sprint 4 Velocity</td>
+    <td colspan="2">28 Story Points</td>
+  </tr>
+  <tr>
+    <td colspan="2">Sum of Story Points</td>
+    <td colspan="2">28 Story Points</td>
+  </tr>
+</table>
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.2. Aspect Leaders and Collaborators
+
+El Sprint 4 abarca la integración frontend-backend de OpalTrace, el despliegue continuo de ambas capas y la estabilización funcional del producto para la demo end-to-end. Cada integrante mantiene los mismos bounded contexts de los sprints anteriores, liderando la integración completa (frontend Angular + Web Services Spring Boot) de sus contextos asignados.
+
+**IAM & Subscriptions:** Comprende la conexión de los flujos de registro, inicio de sesión y recuperación de contraseña con el backend real, el nuevo panel de perfil de usuario con campos editables y facturación multi-método, la validación de tarjeta de pago en el registro, el enforcement de JWT en los endpoints protegidos, la integración del flujo de upgrade de planes y la configuración del pipeline CI/CD de despliegue en GitHub Pages.
+
+**Mineral Extraction:** Comprende la alineación de los contratos frontend-backend del registro de lotes, la exportación de certificados PDF de lote con logo OpalTrace y QR único, el campo opcional de evidencia fotográfica y la preparación de datos de demostración para la empresa GeoMiner.
+
+**Custody Chain & Analytics:** Comprende la integración del mapa de ubicación en tránsito con Leaflet, los puntos GPS de demostración para lotes en tránsito, y la conexión del dashboard de analítica, indicadores de merma y análisis comparativo con los endpoints reales del backend.
+
+**Refinery Processing & Consumer Experience:** Comprende la alineación de los contratos de refinería con el backend, la conexión del flujo de verificación pública con endpoints reales, la carga de imágenes QR con decodificación jsqr, y las nuevas vistas My Jewelry e historial de verificación con captura del consumerId en el backend.
+
+**Jewelry Inventory:** Comprende la alineación de los endpoints de inventario con los REST controllers del backend, el bloqueo de recepciones duplicadas, y la generación de certificados PDF de joyería con logo embebido, QR único y sección de trazabilidad.
+
+| Team Member (Last Name, First Name) | GitHub Username | IAM | Subscriptions | Mineral Extraction | Custody Chain | Refinery Processing | Jewelry Inventory | Consumer Experience | Analytics |
+|-------------------------------------|-----------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Armestar Felipa, Adrian Andres | Adrian5102 | C | C | C | C | L | C | L | C |
+| Baldeon Vivar, Santiago Armando | Santibal11 | C | C | C | L | C | C | C | L |
+| Philco Mota, Katty Yolanda | kattyph | C | C | C | C | C | L | C | C |
+| Vergaray Calderon, Rose Almendra | roseal28 | L | L | C | C | C | C | C | C |
+| Yi Torrejon, Ethan Raul | MRYiEthan | C | C | L | C | C | C | C | C |
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.3. Sprint Backlog 4
+
+El Sprint Backlog 4 contiene todas las tareas de integración frontend-backend, despliegue y estabilización identificadas en el Sprint Planning, organizadas por User Story / Technical Story y bounded context. Cada tarea conecta las vistas Angular con los Web Services reales desplegados en Railway, reemplazando la capa mock de json-server.
+
+URL del Board (Trello): [Enlace Trello Sprint 4](https://trello.com/b/coiNu6fe/sprint-backlog4)
+
+![Sprint Backlog 4](../assets/img/sprint4/sprint4-backlog.png)
+
+| US/TS ID | Title | Task ID | Task Title | Description | Est. (h) | Assigned To | Status |
+|-------|----------|---------|------------|-------------|----------|-------------|--------|
+| US27-29 | Registro e inicio de sesión | T01 | Integración IAM con backend real | Apuntar el environment del frontend al despliegue de Railway y conectar sign-up y sign-in a los endpoints reales. Enviar `cardNumber`, `planTier`, `gender` y `ruc` en el registro, preservando estos datos al re-loguearse. Corregir el binding de género y aplicar el plan seleccionado tras el onboarding. | 5 | Vergaray Calderon, Rose Almendra | Done |
+| US30 | Recuperación de contraseña | T02 | Flujo de recuperación de contraseña end-to-end | Conectar forgot-password y reset-password al backend, retornando 404 cuando el correo no está registrado. Corregir la base URL del enlace de restablecimiento, alinear la UI de reset con los estilos de autenticación y añadir medidor de fortaleza de contraseña. Aplicar política de contraseñas en el backend. | 4 | Vergaray Calderon, Rose Almendra | Done |
+| US27 | Perfil de usuario | T03 | Panel de perfil con campos editables | Implementar el panel de perfil de usuario con campos editables y tarjeta de facturación en el frontend. En el backend, añadir los campos de perfil al agregado `User`, persistirlos en la tabla `users` vía Flyway, manejar `UpdateProfileCommand` y exponer el endpoint `PUT /api/v1/users/{userId}/profile`. | 5 | Vergaray Calderon, Rose Almendra | Done |
+| US22-25 | Suscripciones y facturación | T04 | Integración Subscriptions con backend y billing multi-método | Conectar el flujo de upgrade al backend manejando errores de límite de plan, alinear los endpoints de billing y suscripción con las rutas reales, y refactorizar la facturación a multi-método con agregar/eliminar tarjetas. En el backend, agregar el puerto de payment gateway con adaptador mock de Stripe, hacer transaccionales los servicios y validar la tarjeta de prueba durante el registro. | 5 | Vergaray Calderon, Rose Almendra | Done |
+| TS01 | Implementación de seguridad JWT | T05 | Enforcement de JWT en endpoints protegidos | Habilitar la autenticación JWT obligatoria en todos los endpoints protegidos del backend, añadir `extractUserId` al `TokenService` y verificar la autorización por rol y segmento desde el frontend integrado. | 3 | Vergaray Calderon, Rose Almendra | Done |
+| TS08 | Despliegue continuo del frontend | T06 | Pipeline CI/CD con GitHub Actions hacia GitHub Pages | Crear el workflow de GitHub Actions para el despliegue automático del frontend en GitHub Pages, resolver dependencias de CI (`@angular/animations`, peer deps), usar `ng build` directo, añadir trigger `workflow_dispatch` y restaurar query params en el redirect SPA de GitHub Pages. | 3 | Vergaray Calderon, Rose Almendra | Done |
+| US01-06 | Registro y certificación de lotes | T07 | Alineación de contratos Mineral Extraction | Alinear los contratos del frontend de mineral extraction con los resources reales del backend, reemplazar literales de estado en español por constantes neutrales al idioma y actualizar IDs y fechas de los lotes de demostración a 2026. | 4 | Yi Torrejon, Ethan Raul | Done |
+| US06 | Certificado de lote mineral | T08 | Certificado PDF de lote con logo y QR único | Añadir exportación de certificado PDF por lote con datos de demostración para la empresa GeoMiner, embebiendo el logo de OpalTrace y un código QR único basado en el `certId`, con nombre de empresa dinámico y verificación por QR del certificado de lote. | 4 | Yi Torrejon, Ethan Raul | Done |
+| US04 | Evidencia de anomalías | T09 | Campo de evidencia fotográfica y lote demo en tránsito | Añadir campo opcional de foto de evidencia al formulario de registro de lote, crear el lote de demostración en tránsito y corregir el comportamiento de botones en la vista de lotes. | 3 | Yi Torrejon, Ethan Raul | Done |
+| US08 | Ubicación en tránsito | T10 | Mapa de custodia con Leaflet y puntos GPS demo | Corregir el renderizado de tiles de Leaflet, añadir la entrada Update Location al sidebar del segmento minero y poblar puntos GPS de demostración para el lote en tránsito OT-2026-0004, visibles también en el mapa de ruta del consumidor. | 4 | Baldeon Vivar, Santiago Armando | Done |
+| US18-21 | Dashboard y reportes | T11 | Integración Analytics con backend real | Conectar dashboard, indicadores de merma y análisis comparativo a los endpoints reales del backend, derivar métricas reales del estado operativo, mostrar el gráfico de certificación con datos reales, retirar la comparación inválida del segmento REFINERY en ESG y añadir métricas de fallback realistas para la demo. | 5 | Baldeon Vivar, Santiago Armando | Done |
+| US12-14 | Inventario y certificación | T12 | Alineación de endpoints Jewelry Inventory | Actualizar los endpoints de inventario del frontend para coincidir con los REST controllers del backend, bloquear la recepción duplicada de lotes y retirar eventos mock del store de joyería. | 4 | Philco Mota, Katty Yolanda | Done |
+| US15 | Certificado digital de joyería | T13 | Certificado PDF de joyería con QR y trazabilidad | Incorporar jspdf para la generación de certificados PDF, sembrar certificados de demostración para la joyería Elegant con IDs y fechas 2026, y embeber en el PDF el logo de OpalTrace, un código QR único y la sección de trazabilidad del material. | 5 | Philco Mota, Katty Yolanda | Done |
+| US09-11 | Procesamiento en refinería | T14 | Alineación de contratos Refinery Processing | Alinear los contratos de refinería del frontend con los resources reales del backend (recepción, división en sublotes y registro de merma) y verificar la retención del estado operativo tras recargas de página. | 4 | Armestar Felipa, Adrian Andres | Done |
+| US16 | Verificación de autenticidad | T15 | Verificación pública conectada al backend | Conectar el flujo de verificación pública a los endpoints reales, añadir carga de imagen QR con decodificación jsqr, corregir la URL de verificación del QR, alinear los nombres de empresa con las cuentas demo y añadir certificados `ORIG-OT-2026-xxxx` para habilitar la verificación de certificados de lote. | 5 | Armestar Felipa, Adrian Andres | Done |
+| US16-17 | Historial del consumidor | T16 | Vistas My Jewelry e historial de verificación | Dividir el historial de verificación del consumidor en las vistas My Jewelry (colección) e Historial. En el backend, capturar el `consumerId` en el endpoint público de verificación, registrarlo en los eventos de verificación y exponer los endpoints `my-jewelry` y `verification-history`. | 4 | Armestar Felipa, Adrian Andres | Done |
+| TS09 | Internacionalización | T17 | Traducción de mensajes y títulos restantes | Reemplazar strings de error hardcodeados en español por claves de traducción, traducir títulos de ruta y mensajes de error de stores y vistas, y añadir claves de onboarding y acciones de facturación del perfil. | 3 | Equipo completo | Done |
+| TS10 | Estabilización de la demo | T18 | Corrección de bugs funcionales end-to-end | Resolver los 4 bugs funcionales detectados durante las pruebas de la demo, retener el estado operativo entre recargas, resolver la dependencia circular del IamStore y actualizar todos los IDs y fechas de demostración a 2026. | 4 | Equipo completo | Done |
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.4. Development Evidence for Sprint Review
+
+En este sprint el equipo integró el frontend Angular con los Web Services reales del backend, reemplazando por completo la capa mock de json-server. Esta decisión eliminó el principal riesgo identificado en la retrospectiva del Sprint 3 —la divergencia de contratos entre capas— y trasladó la aplicación de las reglas de negocio (validación de tarjeta de pago, límites de plan, bloqueo de recepciones duplicadas) desde la interfaz hacia la capa de dominio, donde no pueden ser eludidas por el cliente. El trabajo abarcó la conexión de los ocho bounded contexts a los endpoints desplegados en Railway, la implementación del pipeline CI/CD hacia GitHub Pages, nuevas funcionalidades de perfil de usuario, facturación multi-método y certificados PDF con QR verificable, además de la estabilización funcional para la demo end-to-end. El desarrollo se realizó en paralelo sobre los repositorios OpalTrace-webapp (frontend) y OpalTrace-platform (backend), gestionado mediante GitFlow.
+
+**Repositorio OpalTrace-webapp (frontend):**
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on |
+|---|---|---|---|---|---|
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/subscriptions | `3bf62f6` | fix(subscriptions): align billing and subscription endpoints with backend paths | Alineación de los endpoints de facturación y suscripción con las rutas reales del backend | 2026-06-23 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/jewelry-inventory | `2d7c49f` | fix(jewelry): update inventory endpoints to match backend REST controllers | Actualización de los endpoints de inventario para coincidir con los REST controllers del backend | 2026-06-23 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `5bc6d0b` | fix(environment): point API base URL to Railway deployment | Configuración de la URL base del API apuntando al despliegue en Railway | 2026-06-23 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/subscriptions | `bd4877d` | feat(subscriptions): connect upgrade flow to backend and handle plan-limit errors | Conexión del flujo de upgrade al backend con manejo de errores de límite de plan | 2026-06-24 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `5c40f53` | feat(iam): connect password flow to backend and fix environment paths | Conexión del flujo de contraseñas al backend y corrección de rutas de environment | 2026-06-24 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `4f10b86` | feat(iam): show reset link in forgot-password for demo mode | Visualización del enlace de restablecimiento en forgot-password para modo demo | 2026-06-24 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `cd635f1` | feat(consumer): connect verify flow to real backend endpoints | Conexión del flujo de verificación pública a los endpoints reales del backend | 2026-06-24 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/analytics | `e1d2668` | feat(analytics): connect dashboard, shrinkage and comparative to backend | Conexión del dashboard, merma y análisis comparativo a los endpoints reales del backend | 2026-06-24 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `e7d11e3` | fix(i18n): replace hardcoded Spanish error strings with translation key | Reemplazo de strings de error hardcodeados en español por claves de traducción | 2026-06-25 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `0ea469a` | fix(i18n): translate route titles to English; remove mock events from jewelry store | Traducción de títulos de ruta y eliminación de eventos mock del store de joyería | 2026-06-25 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `70c9515` | refactor(mineral): replace Spanish status literals with language-neutral constants | Reemplazo de literales de estado en español por constantes neutrales al idioma | 2026-06-25 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `1450c1f` | fix(iam): resolve circular dependency by removing TranslateService from IamStore | Resolución de dependencia circular removiendo TranslateService del IamStore | 2026-06-25 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `5713bae` | fix(domain): resolve 4 functional bugs found during demo testing | Resolución de 4 bugs funcionales detectados durante las pruebas de la demo | 2026-06-25 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/analytics | `64b2169` | fix(analytics): remove invalid REFINERY segment comparison in ESG | Eliminación de la comparación inválida del segmento REFINERY en reportes ESG | 2026-06-26 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `4e4892e` | fix(persistence): retain operational state across reloads and repair flows | Retención del estado operativo entre recargas de página y reparación de flujos | 2026-06-26 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `4f4d332` | fix(integration): align mineral and refinery contracts with backend | Alineación de los contratos de mineral extraction y refinería con el backend | 2026-06-26 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `a4fea2a` | fix(jewelry,analytics): block duplicate reception and derive real metrics | Bloqueo de recepción duplicada de lotes y derivación de métricas reales | 2026-06-26 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/analytics | `6b28a51` | fix(analytics,i18n): real certification chart and i18n error messages | Gráfico de certificación con datos reales y mensajes de error internacionalizados | 2026-06-26 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `b83220e` | refactor(i18n): translate remaining store and view error messages | Traducción de mensajes de error restantes en stores y vistas | 2026-06-27 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/custody-chain | `fb820ab` | feat(nav): add Update Location entry to mining sidebar | Nueva entrada Update Location en el sidebar del segmento minero | 2026-06-27 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/custody-chain | `1eeec36` | fix(map): correct Leaflet tile rendering and add consumer route map | Corrección del renderizado de tiles de Leaflet y mapa de ruta del consumidor | 2026-06-27 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `ef60865` | fix(iam): remove default gender value and require explicit selection | Eliminación del valor de género por defecto exigiendo selección explícita | 2026-06-27 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `85ecac5` | fix(i18n): update placeholder year from 2025 to 2026 | Actualización del año placeholder de 2025 a 2026 | 2026-06-28 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `7c6f56b` | fix(iam): auto-format card number input with spaces every 4 digits | Autoformato del número de tarjeta con espacios cada 4 dígitos | 2026-06-28 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `f1e77ab` | ci: add GitHub Actions workflow for automatic GitHub Pages deployment | Workflow de GitHub Actions para despliegue automático en GitHub Pages | 2026-06-28 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `46aa795` | fix(ci): use ng build directly to avoid triggering angular-cli-ghpages in CI | Uso de ng build directo para evitar disparar angular-cli-ghpages en CI | 2026-06-28 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `954c2e8` | fix(ci): add @angular/animations dependency and fix npm ci peer deps | Dependencia @angular/animations y corrección de peer deps en npm ci | 2026-06-28 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `befef40` | fix(iam): validate registered email on password recovery and fix reset link base URL | Validación de correo registrado en recuperación y corrección de la base URL del enlace de reset | 2026-06-29 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `2609300` | fix(routing): restore query params in GitHub Pages SPA redirect | Restauración de query params en el redirect SPA de GitHub Pages | 2026-06-29 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `f727ca7` | feat(iam): align reset-password UI with auth styles and add password strength meter | Alineación de la UI de reset-password con los estilos de auth y medidor de fortaleza | 2026-06-29 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `3f8ff78` | ci: add workflow_dispatch trigger to allow manual deploys | Trigger workflow_dispatch para permitir despliegues manuales | 2026-06-29 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `926e82d` | feat(consumer): split verification history into My Jewelry collection and History views | División del historial de verificación en las vistas My Jewelry e Historial | 2026-06-30 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `b63d845` | feat(consumer-experience): add QR image upload with jsqr decoding | Carga de imagen QR con decodificación mediante jsqr | 2026-06-30 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `5f3a189` | feat(iam): add user profile panel with editable fields and billing card | Panel de perfil de usuario con campos editables y tarjeta de facturación | 2026-06-30 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `a8f9207` | fix(iam): preserve gender on re-login and persist billing on registration | Preservación del género al re-loguearse y persistencia de facturación en el registro | 2026-06-30 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `fe6d6bd` | fix(iam): pass billing data on confirm and show register error with loading state | Envío de datos de facturación al confirmar y error de registro con estado de carga | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `99fe7d6` | fix(iam): correct gender binding, refactor billing to multi-method with add/delete | Corrección del binding de género y refactor de billing a multi-método con agregar/eliminar | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `e0e421b` | feat(i18n): add onboarding processing key and profile billing action keys | Claves de traducción para procesamiento de onboarding y acciones de facturación del perfil | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `e212d10` | fix(iam): send cardNumber to registration endpoint to satisfy validation | Envío del cardNumber al endpoint de registro para satisfacer la validación | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `aad2c0d` | fix(iam): preserve ruc on re-login and enforce selected plan after onboarding | Preservación del RUC al re-loguearse y aplicación del plan seleccionado tras onboarding | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `8915967` | feat(mineral-extraction): add optional evidence photo field to batch registration form | Campo opcional de foto de evidencia en el formulario de registro de lote | 2026-07-01 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/iam | `598a1e7` | fix(iam): send cardNumber to backend, preserve planTier and add demo ruc fallback | Envío de cardNumber al backend, preservación de planTier y fallback de RUC demo | 2026-07-02 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `100ce4b` | feat(mineral-extraction): seed demo batches for GeoMiner and add PDF certificate export | Lotes de demostración para GeoMiner y exportación de certificado PDF | 2026-07-02 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/jewelry-inventory | `279602c` | feat(jewelry-inventory): seed demo certificates for Elegant and add PDF export | Certificados de demostración para la joyería Elegant y exportación PDF | 2026-07-02 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `18bbec4` | fix(consumer-experience): align company names with demo accounts and fix QR URL verification | Alineación de nombres de empresa con las cuentas demo y corrección de la URL de verificación QR | 2026-07-02 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | develop | `96a3b58` | chore(deps): add jspdf for PDF certificate generation | Incorporación de jspdf para la generación de certificados PDF | 2026-07-02 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `e3721ff` | fix(consumer-experience): update demo certificate IDs and dates to 2026 | Actualización de IDs y fechas de certificados demo a 2026 | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `f46c394` | fix(mineral-extraction): update demo batch IDs and dates to 2026 | Actualización de IDs y fechas de lotes demo a 2026 | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/jewelry-inventory | `bb3601d` | fix(jewelry-inventory): update demo certificate IDs and dates to 2026 | Actualización de IDs y fechas de certificados demo de joyería a 2026 | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/analytics | `c9367d5` | feat(analytics): add realistic fallback metrics and demo shrinkage/comparative data | Métricas de fallback realistas y datos demo de merma y comparativo | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `f40f2cc` | feat(mineral-extraction): embed OpalTrace logo and unique QR code in mineral batch certificate PDF | Logo OpalTrace y código QR único embebidos en el certificado PDF de lote mineral | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/jewelry-inventory | `31637b7` | feat(jewelry-inventory): embed OpalTrace logo, unique QR code and traceability section in jewelry certificate PDF | Logo, QR único y sección de trazabilidad embebidos en el certificado PDF de joyería | 2026-07-03 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/jewelry-inventory | `b508eb0` | fix(jewelry-inventory): correct remaining 2025 issuedAt date in demo certificate CERT-2026-005 | Corrección de la fecha issuedAt 2025 restante en el certificado demo CERT-2026-005 | 2026-07-04 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/consumer-experience | `0eb1b11` | feat(consumer-experience): add ORIG-OT-2026-xxxx certs to enable batch certificate QR verification | Certificados ORIG-OT-2026-xxxx para habilitar la verificación QR de certificados de lote | 2026-07-04 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/mineral-extraction | `a9f23cf` | fix(mineral-extraction): add in-transit demo batch, certId-based QR, dynamic company name and button fix | Lote demo en tránsito, QR basado en certId, nombre de empresa dinámico y corrección de botón | 2026-07-04 |
+| [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp) | feature/custody-chain | `01ebc1e` | feat(custody-chain): seed demo GPS points for in-transit batch OT-2026-0004 | Puntos GPS de demostración para el lote en tránsito OT-2026-0004 | 2026-07-04 |
+
+**Repositorio OpalTrace-platform (backend):**
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on |
+|---|---|---|---|---|---|
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/subscriptions | `d2f91ed` | feat(subscriptions): add payment gateway port and mock stripe adapter | Puerto de payment gateway con adaptador mock de Stripe | 2026-06-23 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `3018146` | feat(iam): enforce password policy and expose password management endpoints | Política de contraseñas y endpoints de gestión de contraseña (forgot/reset) | 2026-06-23 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | main | `94f98bb` | Merge branch 'develop' | Integración de develop con los cambios de subscriptions e IAM | 2026-06-24 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/subscriptions | `1673012` | fix(subscriptions): make command/query services transactional | Servicios de comando y consulta de suscripciones marcados como transaccionales | 2026-06-24 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | main | `bdaf650` | chore: trigger railway redeploy with subscription fix | Redespliegue en Railway con la corrección de suscripciones | 2026-06-24 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `1ebe520` | feat(iam): validate test payment card during user registration | Validación de tarjeta de pago de prueba durante el registro de usuario | 2026-06-28 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `ccde5c0` | fix(iam): return 404 for forgot-password with unregistered email | Retorno de 404 en forgot-password cuando el correo no está registrado | 2026-06-29 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `0ef5aa0` | feat(iam): add extractUserId to TokenService | Método extractUserId añadido al TokenService | 2026-06-30 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `9e6e9fb` | feat(iam): enforce JWT authentication on protected endpoints | Enforcement de autenticación JWT en todos los endpoints protegidos | 2026-06-30 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/consumer-experience | `453c7f1` | feat(consumer-experience): track consumerId on verification events | Registro del consumerId en los eventos de verificación | 2026-07-01 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/consumer-experience | `e985464` | feat(consumer-experience): capture consumerId on public verify endpoint | Captura del consumerId en el endpoint público de verificación | 2026-07-01 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/consumer-experience | `6106f72` | feat(consumer-experience): add my-jewelry and verification-history endpoints | Endpoints my-jewelry y verification-history para el consumidor autenticado | 2026-07-01 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `548016e` | feat(iam): add profile fields and update behavior to User aggregate | Campos de perfil y comportamiento de actualización en el agregado User | 2026-07-01 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `15ebe97` | feat(iam): persist profile fields on users table | Persistencia de los campos de perfil en la tabla users | 2026-07-02 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `dea2dd2` | feat(iam): add UpdateProfileCommand handling to UserCommandService | Manejo de UpdateProfileCommand en el UserCommandService | 2026-07-02 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `29173fb` | feat(iam): expose PUT /users/{userId}/profile endpoint | Endpoint PUT /users/{userId}/profile para actualización de perfil | 2026-07-02 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `ba557e2` | feat(iam): accept and expose gender on registration and sign-in | Aceptación y exposición del campo gender en registro e inicio de sesión | 2026-07-02 |
+| [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform) | feature/iam | `7a0dc6d` | feat(iam): accept planTier on registration and return ruc on sign-in | Aceptación de planTier en el registro y retorno del RUC en el sign-in | 2026-07-02 |
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.5. Execution Evidence for Sprint Review
+
+Al cierre del Sprint 4, OpalTrace opera de extremo a extremo: el frontend Angular desplegado en GitHub Pages consume los Web Services reales del backend Spring Boot desplegado en Railway. El flujo completo de trazabilidad quedó operativo con datos de demostración consistentes: la empresa minera registra lotes con evidencia fotográfica y exporta certificados PDF con logo y QR único; la cadena de custodia muestra el lote en tránsito con su recorrido GPS en el mapa Leaflet; la joyería recibe material, bloquea recepciones duplicadas y emite certificados PDF con sección de trazabilidad; y el consumidor final verifica autenticidad escaneando o subiendo la imagen del QR, con su colección My Jewelry e historial de verificación persistidos en el backend.
+
+Más allá de las funcionalidades entregadas, este sprint materializa la propuesta de valor del producto: por primera vez los tres segmentos (minera, joyería y consumidor) recorren la cadena de trazabilidad completa sobre datos reales compartidos, lo que convierte la demo en evidencia verificable ante clientes potenciales. Los certificados PDF descargables responden además a una necesidad expresada explícitamente en las entrevistas de validación del segmento joyerías (exportar el certificado para entregarlo físicamente al cliente), cerrando el ciclo entre el feedback de usuarios y el producto entregado.
+
+**Capacidades integradas durante el sprint:**
+
+- IAM: registro con validación de tarjeta de pago, perfil de usuario editable, facturación multi-método y recuperación de contraseña end-to-end
+- Subscriptions: upgrade de plan contra el backend con manejo de errores de límite de plan
+- Mineral Extraction: registro de lotes con evidencia fotográfica y certificado PDF con QR verificable
+- Custody Chain: mapa de ubicación en tránsito con puntos GPS reales
+- Refinery Processing: contratos alineados con el backend para recepción, división y merma
+- Jewelry Inventory: certificado PDF con logo, QR único y trazabilidad; bloqueo de recepción duplicada
+- Consumer Experience: verificación por QR (cámara o imagen), My Jewelry e historial de verificación
+- Analytics: dashboard, merma y comparativo conectados a datos reales del backend
+
+**URL del video de demostración del Sprint 4:** [Video sprint 4](https://drive.google.com/drive/folders/1mzn5Kcsza7XuY-m50KO7CaiFEqaPcPu_?usp=sharing)
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.6. Services Documentation Evidence for Sprint Review
+
+Durante el Sprint 4 se extendieron los Web Services del backend para soportar la integración completa con el frontend. Los endpoints existentes fueron protegidos con autenticación JWT obligatoria y se incorporaron nuevos endpoints de gestión de perfil, gestión de contraseñas y experiencia del consumidor autenticado. La documentación se mantiene generada automáticamente con SpringDoc OpenAPI 3.0, accesible vía Swagger UI en la ruta `/swagger-ui/index.html` del despliegue en Railway.
+
+Los endpoints nuevos o modificados durante este sprint son los siguientes:
+
+| Bounded Context | Método | Endpoint | Descripción | Auth requerida |
+|---|---|---|---|---|
+| IAM | POST | /api/v1/authentication/sign-up | Extendido: acepta `cardNumber` (validación de tarjeta de prueba), `planTier`, `gender` y `ruc` | No |
+| IAM | POST | /api/v1/authentication/sign-in | Extendido: retorna `ruc`, `gender` y `planTier` del usuario autenticado | No |
+| IAM | POST | /api/v1/authentication/forgot-password | Solicitud de restablecimiento; retorna 404 si el correo no está registrado | No |
+| IAM | POST | /api/v1/authentication/reset-password | Restablecimiento de contraseña con política de seguridad aplicada | No |
+| IAM | PUT | /api/v1/users/{userId}/profile | Actualización de los campos de perfil del usuario | Sí |
+| Subscriptions | POST | /api/v1/subscriptions | Extendido: procesamiento de pago vía payment gateway (adaptador mock de Stripe) y validación de límites de plan | Sí |
+| Consumer Experience | GET | /api/v1/verify/{certificateId} | Extendido: captura el `consumerId` del usuario autenticado al verificar | No |
+| Consumer Experience | GET | /api/v1/consumers/{consumerId}/my-jewelry | Colección de joyas verificadas del consumidor | Sí |
+| Consumer Experience | GET | /api/v1/consumers/{consumerId}/verification-history | Historial de verificaciones realizadas por el consumidor | Sí |
+
+Adicionalmente, todos los endpoints protegidos de los ocho bounded contexts ahora exigen un token JWT válido, extrayendo el `userId` del token mediante el `TokenService` para asociar las operaciones al usuario autenticado. Este endurecimiento no es solo técnico: protege los datos operativos de cada empresa frente a accesos no autenticados y permite atribuir cada operación de la cadena de custodia a un usuario identificado, condición necesaria para que los certificados de trazabilidad tengan valor probatorio ante los clientes finales.
+
+**Screenshot de Swagger UI:**
+
+![Swagger UI OpalTrace Backend](../assets/img/sprint4/swagger-1.png)
+![Swagger UI OpalTrace Backend](../assets/img/sprint4/swagger-2.png)
+![Swagger UI OpalTrace Backend](../assets/img/sprint4/swagger-3.png)
+![Swagger UI OpalTrace Backend](../assets/img/sprint4/swagger-4.png)
+![Swagger UI OpalTrace Backend](../assets/img/sprint4/swagger-5.png)
+
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.7. Software Deployment Evidence for Sprint Review
+
+En esta iteración se completó el despliegue productivo de ambas capas de OpalTrace. El backend fue desplegado en Railway a partir del repositorio `OpalTrace-platform`, con redespliegues automáticos ante cada push a `main`. El frontend fue configurado con un pipeline de despliegue continuo mediante GitHub Actions hacia GitHub Pages, incluyendo trigger manual `workflow_dispatch` y corrección del redirect SPA para preservar query params (necesario para los enlaces de verificación QR y restablecimiento de contraseña). Automatizar el despliegue convirtió la publicación de cambios —antes una tarea manual propensa a errores— en un push a la rama principal, lo que acortó el ciclo entre corrección y validación durante la estabilización de la demo y garantiza que la URL pública refleje siempre la última versión aprobada.
+
+**Repositorios:**
+
+- Frontend: [OpalTrace-webapp](https://github.com/Minex-organization/OpalTrace-webapp)
+- Backend: [OpalTrace-platform](https://github.com/upc-pre-202610-1asi0729-11863-minex/OpalTrace-platform)
+
+**URL de despliegue del frontend:** [opaltrace-webapp](https://upc-pre-202610-1asi0729-11863-minex.github.io/OpalTrace-webapp/auth/login)
+
+**Actividades realizadas:**
+- Despliegue del backend Spring Boot en Railway con base de datos gestionada y migraciones Flyway
+- Configuración del environment del frontend apuntando la URL base del API al despliegue de Railway
+- Creación del workflow de GitHub Actions para build y despliegue automático del frontend en GitHub Pages
+- Resolución de dependencias de CI (`@angular/animations`, peer deps de npm ci) y uso de `ng build` directo
+- Corrección del redirect SPA de GitHub Pages para restaurar query params en rutas profundas
+- Verificación end-to-end del frontend desplegado consumiendo los Web Services de Railway
+
+![Deployment Evidence](../assets/img/sprint4/deployment.png)
+![Deployment Evidence](../assets/img/sprint4/deployment2.png)
+![Deployment Evidence](../assets/img/sprint4/deployment3.png)
+![Deployment Evidence](../assets/img/sprint4/deployment4.png)
+
+<div style="page-break-after: always"></div>
+
+### 5.2.4.8. Team Collaboration Insights during Sprint
+
+Durante el Sprint 4, el equipo trabajó de manera colaborativa en la integración frontend-backend y el despliegue del producto, manteniendo la misma distribución de bounded contexts de los sprints anteriores y trabajando simultáneamente sobre los repositorios OpalTrace-webapp y OpalTrace-platform.
+
+| Nombre | Bounded Context | Actividad principal |
+|--------|----------------|---------------------|
+| Armestar Felipa, Adrian Andres | Refinery Processing, Consumer Experience | Alineación de contratos de refinería, verificación pública con jsqr, vistas My Jewelry e historial, endpoints de consumidor en backend |
+| Baldeon Vivar, Santiago Armando | Custody Chain, Analytics | Mapa Leaflet con puntos GPS en tránsito e integración del dashboard, merma y comparativo con el backend |
+| Philco Mota, Katty Yolanda | Jewelry Inventory | Alineación de endpoints de inventario, bloqueo de recepción duplicada y certificado PDF con trazabilidad para Elegant |
+| Vergaray Calderon, Rose Almendra | IAM, Subscriptions | Integración de autenticación y suscripciones, perfil de usuario, billing multi-método, JWT enforcement y pipeline CI/CD |
+| Yi Torrejon, Ethan Raul | Mineral Extraction | Integración de registro de lotes, certificado PDF con logo y QR, evidencia fotográfica y datos demo GeoMiner |
+
+**Evidencia de colaboración:**
+
+El equipo completó el Sprint 4 integrando y desplegando el producto completo. La redistribución de bounded contexts permitió que cada integrante conociera tanto la capa de presentación como los Web Services de sus contextos, acelerando la detección y corrección de discrepancias de contrato. Los analíticos de GitHub muestran contribuciones constantes de roseal28, kattyph, Santibal11, Adrian5102 y MRYiEthan a lo largo del sprint en ambos repositorios, con colaboración transversal en i18n, persistencia de estado y estabilización de la demo.
+
+![Insight](../assets/img/sprint4/insight.png)
+
 ## 5.3. Validation Interviews
 
 ### 5.3.1. Diseño de Entrevistas
