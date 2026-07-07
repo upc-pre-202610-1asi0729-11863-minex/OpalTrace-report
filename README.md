@@ -1,33 +1,51 @@
+<div align="center">
+
 ![Logo UPC](assets/img/logoUPC.png)
 
-# UNIVERSIDAD PERUANA DE CIENCIAS APLICADAS
+# Universidad Peruana de Ciencias Aplicadas
 
-***Ingeniería de Software***
+Carrera de Ingeniería de Software
 
-**Curso:** 1ASI0729 | Desarrollo de Aplicaciones en Open Source  
-**NRC:** 11863  
-**Ciclo:** 5  
-**Docente:** Ivan Robles Fernández  
+**1ASI0729**  
+**Desarrollo de Aplicaciones en Open Source**  
 
-## **"Informe de trabajo: TB2"**
+NRC  
+**11863**  
 
-### ***Startup:*** Minex
+### Informe del Trabajo Final
 
-### ***Producto:*** OpalTrace
+Docente  
+**Robles Fernández, Ivan**  
 
-![Logo OpalTace](assets/img/logoOpalTrace.png)
+Equipo  
+**Minex**
 
-***Relación de integrantes:***
+Proyecto  
+**OpalTrace**
 
-| INTEGRANTES | CÓDIGO |
-| :---: | :---: |
-| Armestar Felipa, Adiran Andres | U202410084 |
-| Baldeon Vivar, Santiago Armando | U202319881 |
-| Philco Mota, Katty Yolanda | U202416107 |
-| Vergaray Calderon, Rose Almendra | U20241D159 |
-| Yi Torrejon, Ethan Raul | U202313434 |
+**Integrantes**
 
-Julio, 2026
+<table align="center">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Apellidos y Nombres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>U202410084</td><td>Armestar Felipa, Adiran Andres</td></tr>
+    <tr><td>U202319881</td><td>Baldeon Vivar, Santiago Armando</td></tr>
+    <tr><td>U202416107</td><td>Philco Mota, Katty Yolanda</td></tr>
+    <tr><td>U20241D159</td><td>Vergraray Calderon, Rose Almendra</td></tr>
+    <tr><td>U202313434</td><td>Yi Torrejon, Ethan Raul</td></tr>
+  </tbody>
+</table>
+
+**Período 202610**
+
+**Julio, 2026**
+
+</div>
 
 <div style="page-break-after: always"></div>
 
